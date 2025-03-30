@@ -1,13 +1,13 @@
-package br.edu.fatecgru.fabricadesonhos;
+package br.edu.fatecgru.toybox;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FabricadesonhosApplication {
+public class ToyboxApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FabricadesonhosApplication.class, args);
+		SpringApplication.run(ToyboxApplication.class, args);
 	}
 
 }

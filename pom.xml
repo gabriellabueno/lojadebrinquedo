@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.edu.fatecgru</groupId>
-	<artifactId>fabricadesonhos</artifactId>
+	<artifactId>toybox</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>fabricadesonhos</name>
-	<description>Fabrica de Sonhos</description>
+	<name>toybox</name>
+	<description>Toy Box</description>
 	<url/>
 	<licenses>
 		<license/>
