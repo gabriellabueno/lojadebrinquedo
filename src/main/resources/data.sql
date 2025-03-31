@@ -7,24 +7,24 @@ INSERT INTO category (name) VALUES
 
 INSERT INTO toy (name, price, brand, image, description) VALUES
         -- Categoria: Bonecos
-        ('Boneco Homem-Aranha', 49.90, 'Marvel', 'spiderman.png', 'Boneco articulado do Homem-Aranha com teias removíveis.'),
-        ('Boneco Batman', 59.90, 'DC Comics', 'batman.png', 'Batman articulado com capa removível e acessórios.'),
+        ('Boneco Homem-Aranha', 49.90, 'Marvel', 'https://rihappynovo.vtexassets.com/arquivos/ids/4912807', 'Boneco articulado do Homem-Aranha com teias removíveis.'),
+        ('Boneco Batman', 59.90, 'DC Comics', 'https://rihappynovo.vtexassets.com/arquivos/ids/6168307', 'Batman articulado com capa removível e acessórios.'),
         
         -- Categoria: Carros de brinquedo
-        ('Carrinho Controle Remoto', 139.90, 'Hot Wheels', 'carro-controle.png', 'Carrinho esportivo com controle remoto rápido e ágil.'),
-        ('Miniatura Ferrari', 89.90, 'Maisto', 'ferrari-mini.png', 'Miniatura detalhada de uma clássica Ferrari vermelha.'),
+        ('Carrinho Controle Remoto', 139.90, 'Hot Wheels', 'https://rihappy.vtexassets.com/arquivos/ids/5923252', 'Carrinho esportivo com controle remoto rápido e ágil.'),
+        ('Miniatura Conversível', 89.90, 'Maisto', 'https://rihappynovo.vtexassets.com/arquivos/ids/5999184', 'Miniatura detalhada de um carro conversível branco.'),
         
         -- Categoria: Esportes
-        ('Bola de Futebol Infantil', 39.90, 'Penalty', 'bola-futebol.png', 'Bola de futebol com tamanho e peso adaptados para crianças pequenas.'),
-        ('Kit Raquete de Tênis Infantil', 120.00, 'Wilson', 'kit-tenis.png', 'Conjunto com duas raquetes leves e bolas macias para iniciantes.'),
+        ('Bola de Futebol Infantil', 39.90, 'Penalty', 'https://rihappynovo.vtexassets.com/arquivos/ids/7088506', 'Bola de futebol com tamanho e peso adaptados para crianças pequenas.'),
+        ('Kit Ping Pong Infantil', 120.00, 'Go Play', 'https://rihappynovo.vtexassets.com/arquivos/ids/503809', 'Conjunto com duas raquetes leves e bolas macias para iniciantes.'),
         
         -- Categoria: Jogos de tabuleiro
-        ('Banco Imobiliário', 79.99, 'Estrela', 'banco-imobiliario.png', 'Jogo clássico onde os jogadores compram e vendem propriedades.'),
-        ('Detetive', 69.90, 'Estrela', 'detetive.png', 'Jogo de estratégia e investigação para resolver mistérios.'),
+        ('Banco Imobiliário', 79.99, 'Estrela', 'https://rihappynovo.vtexassets.com/arquivos/ids/5993500', 'Jogo clássico onde os jogadores compram e vendem propriedades.'),
+        ('Detetive', 69.90, 'Estrela', 'https://rihappynovo.vtexassets.com/arquivos/ids/7222716', 'Jogo de estratégia e investigação para resolver mistérios.'),
         
         -- Categoria: Pelúcias
-        ('Ursinho Teddy', 49.90, 'Fofy Toys', 'ursinho-teddy.png', 'Ursinho de pelúcia macio ideal para crianças pequenas.'),
-        ('Pelúcia Pokémon Pikachu', 59.99, 'Nintendo', 'pikachu-peluche.png', 'Pelúcia oficial do personagem Pikachu da série Pokémon.');
+        ('Ursinho Teddy', 49.90, 'Fofy Toys', 'https://rihappynovo.vtexassets.com/arquivos/ids/385199', 'Ursinho de pelúcia macio ideal para crianças pequenas.'),
+        ('Pelúcia Pokémon Pikachu', 59.99, 'Nintendo', 'https://rihappynovo.vtexassets.com/arquivos/ids/6164121', 'Pelúcia do personagem Pikachu da série Pokémon.');
 
 INSERT INTO store (fk_id_toy, fk_id_category) VALUES
           (1, 1), -- Homem-Aranha - Bonecos
