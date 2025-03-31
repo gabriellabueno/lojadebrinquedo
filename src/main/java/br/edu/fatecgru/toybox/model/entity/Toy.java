@@ -1,12 +1,8 @@
 package br.edu.fatecgru.toybox.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 
 @Entity
 @Table(name="toy")
@@ -14,21 +10,46 @@ public class Toy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id_toy")
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private Double price;
+    @Column(name = "price", nullable = false, precision = 10, scale = 2)
+    private BigDecimal price;
 
-    @Column(nullable = false)
+    @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Column(nullable = false)
-    private String imageUrl;
+    @Column(name = "image", nullable = false)
+    private String image;
 
+    @Column(name = "description")
     private String description;
+
+
+    // Muitos brinquedos podem pertencer a 1 única categoria
+    @ManyToOne(fetch = FetchType.LAZY)
+
+    // Referencia chave primária de Category
+    @JoinColumn(name = "fk_id_category", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_toy_category")) // Nome da Constraint
+    private Category category; // Objeto que representa entidade category
+
+
+
+    public Toy() {
+    }
+
+    public Toy(String name, BigDecimal price, String brand, String image, String description, Category category) {
+        this.name = name;
+        this.price = price;
+        this.brand = brand;
+        this.image = image;
+        this.description = description;
+        this.category = category;
+    }
 
 
     public Integer getId() {
@@ -43,11 +64,11 @@ public class Toy {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -59,12 +80,12 @@ public class Toy {
         this.brand = brand;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getDescription() {
@@ -74,4 +95,9 @@ public class Toy {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Integer getCategoryId() {
+        return category.getId();
+    }
+
 }
