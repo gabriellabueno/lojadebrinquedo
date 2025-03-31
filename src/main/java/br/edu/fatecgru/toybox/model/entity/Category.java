@@ -14,11 +14,15 @@ public class Category {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "image", nullable = false)
+    private String image;
+
     public Category() {}
 
-    public Category(Integer id, String name) {
+    public Category(Integer id, String name, String image) {
         this.id = id;
         this.name = name;
+        this.image = image;
     }
 
     public Integer getId() {
@@ -31,5 +35,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
