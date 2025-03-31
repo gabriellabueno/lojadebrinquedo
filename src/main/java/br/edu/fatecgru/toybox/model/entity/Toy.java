@@ -28,8 +28,6 @@ public class Toy {
     @Column(nullable = false)
     private String imageUrl;
 
-    private String category;
-
     private String description;
 
 
@@ -67,14 +65,6 @@ public class Toy {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getDescription() {
