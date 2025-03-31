@@ -1,3 +1,7 @@
+
+CREATE DATABASE toybox;
+USE toybox;
+
 CREATE TABLE toy (
      pk_id_toy INTEGER,
      name VARCHAR(255) NOT NULL,
