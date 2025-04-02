@@ -1,12 +1,12 @@
 
-INSERT INTO category (name, image) VALUES
+INSERT INTO category (name, image_url) VALUES
         ('Bonecos', 'Bonecos - https://rihappy.vtexassets.com/arquivos/ids/6545800-800-auto'),
         ('Carros de brinquedo', 'https://rihappy.vtexassets.com/arquivos/ids/338641-800-auto'),
         ('Esportes', 'https://rihappy.vtexassets.com/arquivos/ids/6202962-800-auto'),
         ('Jogos de tabuleiro', 'https://rihappy.vtexassets.com/arquivos/ids/5787817-800-auto'),
         ('Pelúcias', 'https://rihappy.vtexassets.com/arquivos/ids/6155000-800-auto');
 
-INSERT INTO toy (name, price, brand, image, description, fk_id_category) VALUES
+INSERT INTO toy (name, price, brand, image_url, description, category_id) VALUES
         -- Categoria: Bonecos
         ('Boneco Homem-Aranha', 49.90, 'Marvel', 'https://rihappynovo.vtexassets.com/arquivos/ids/4912807-800-auto', 'Boneco articulado do Homem-Aranha com teias removíveis.', 1),
 

@@ -8,24 +8,31 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_id_category")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "image", nullable = false)
-    private String image;
+    @Column(name = "image_url", nullable = false)
+    private String imageUrl;
+
 
     public Category() {}
 
-    public Category(Integer id, String name, String image) {
+    public Category(Integer id) {
         this.id = id;
-        this.name = name;
-        this.image = image;
     }
 
-    public void setId(Integer id) { this.id = id;}
+    public Category(Integer id, String name, String imageUrl) {
+        this.id = id;
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;
@@ -39,11 +46,11 @@ public class Category {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

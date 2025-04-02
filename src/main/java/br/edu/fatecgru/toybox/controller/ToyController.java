@@ -2,6 +2,7 @@ package br.edu.fatecgru.toybox.controller;
 
 import br.edu.fatecgru.toybox.model.entity.Toy;
 import br.edu.fatecgru.toybox.service.ToyService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,46 +28,43 @@ public class ToyController {
     // TELA HOME
     @GetMapping("/toys")
     public List<Toy> listAll() {
-        return toyService.listAllToy();
+        return toyService.listAll();
+    }
+
+    // APRESENTAÇÃO BRINQUEDO
+    @GetMapping("/toys/{id}")
+    public Toy getById(@PathVariable("id") Integer id) {
+        return toyService.getById(id);
     }
 
     // TELA ADMIN
+
     @GetMapping("/adm")
     public List<Toy> listAllAdm() {
-        return toyService.listAllToy();
+        return toyService.listAll();
     }
 
-    @GetMapping("/toys/{id}")
-    public Toy getToyById(@PathVariable("pk_id_toy") Integer id) {
-        return toyService.getToyById(id);
+    @PostMapping("/adm")
+    public void insert(@RequestBody Toy toy) {
+        toyService.insert(toy);
     }
 
-    @PostMapping("/adm/new")
-    public void insertToy(@RequestBody Toy toy) {
-        toyService.insertToy(toy);
+    @PutMapping("/adm/{id}")
+    public void update(@RequestBody Toy toy, @PathVariable("id") Integer id) {
+        toyService.update(id, toy);
     }
 
-    @PutMapping("/adm/update/{id}")
-    public Toy update(@RequestBody Toy toy, @PathVariable Integer id) {
-        //Obter toy a ser atualizado:
-        Toy toyUpdate = toyService.getToyById(id);
-
-        //Atualizar dados:
-        toyUpdate.setName(toy.getName());
-        toyUpdate.setPrice(toy.getPrice());
-        toyUpdate.setBrand(toy.getBrand());
-        toyUpdate.setImage(toy.getImage());
-        toyUpdate.setDescription(toy.getDescription());
-        toyUpdate.setCategory(toy.getCategory());
-        toyService.updateToy(toyUpdate);
-
-        return toyUpdate;
-    }
-
-    @DeleteMapping("/adm/delete/{id}")
-    public String delete(@PathVariable("pk_id_toy") Integer id) {
-        toyService.removeToy(id);
+    @DeleteMapping("/adm/{id}")
+    public String remove(@PathVariable("id") Integer id) {
+        toyService.remove(id);
         return "Brinquedo removido com sucesso!";
+    }
+
+    // TELA CATÁLOGO - BRINQUEDO POR CATEGORIA
+
+    @GetMapping("/category/{id}")
+    public List<Toy> listByCategory(@PathVariable Integer id) {
+        return toyService.listByCategory(id);
     }
 
 

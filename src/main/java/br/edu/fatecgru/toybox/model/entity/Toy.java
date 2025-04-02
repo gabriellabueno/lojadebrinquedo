@@ -10,7 +10,7 @@ public class Toy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_id_toy")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "name", nullable = false)
@@ -22,33 +22,26 @@ public class Toy {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Column(name = "image", nullable = false)
-    private String image;
+    @Column(name = "image_url", nullable = false)
+    private String imageUrl;
+
+    @Column(name = "category_id", nullable = false)
+    private Integer categoryId;
 
     @Column(name = "description")
     private String description;
 
 
-    // Muitos brinquedos podem pertencer a 1 única categoria
-    @ManyToOne(fetch = FetchType.LAZY)
-
-    // Referencia chave primária de Category
-    @JoinColumn(name = "fk_id_category", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_toy_category")) // Nome da Constraint
-    private Category category; // Objeto que representa entidade category
-
-
-
     public Toy() {
     }
 
-    public Toy(String name, BigDecimal price, String brand, String image, String description, Category category) {
+    public Toy(String name, BigDecimal price, String brand, String imageUrl, Integer categoryId, String description) {
         this.name = name;
         this.price = price;
         this.brand = brand;
-        this.image = image;
+        this.imageUrl = imageUrl;
+        this.categoryId = categoryId;
         this.description = description;
-        this.category = category;
     }
 
 
@@ -80,12 +73,21 @@ public class Toy {
         this.brand = brand;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer category) {
+        this.categoryId = category;
     }
 
     public String getDescription() {
@@ -94,13 +96,5 @@ public class Toy {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }
