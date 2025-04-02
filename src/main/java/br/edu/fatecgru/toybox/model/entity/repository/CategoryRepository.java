@@ -8,11 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/* REPOSITORY | Camada de Acesso a Dados
- * Usa métodos CRUD herdados da classe JPA
- * Substitui classe DAO
- */
-
-public interface ToyRepository extends JpaRepository<Toy, Integer> {
-
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+    @Query("SELECT t FROM Toy t WHERE t.category = :category")
+    List<Toy> getToyByCategory(@Param("category") Category category);
 }

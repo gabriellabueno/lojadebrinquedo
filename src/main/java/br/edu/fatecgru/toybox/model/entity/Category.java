@@ -25,6 +25,8 @@ public class Category {
         this.image = image;
     }
 
+    public void setId(Integer id) { this.id = id;}
+
     public Integer getId() {
         return id;
     }

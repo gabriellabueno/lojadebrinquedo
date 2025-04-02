@@ -96,8 +96,11 @@ public class Toy {
         this.description = description;
     }
 
-    public Integer getCategoryId() {
-        return category.getId();
+    public Category getCategory() {
+        return category;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
