@@ -1,4 +1,4 @@
-package br.edu.fatecgru.toybox.model.entity;
+package br.edu.fatecgru.toybox.toy;
 
 import jakarta.persistence.*;
 
@@ -43,7 +43,6 @@ public class Toy {
         this.categoryId = categoryId;
         this.description = description;
     }
-
 
     public Integer getId() {
         return id;

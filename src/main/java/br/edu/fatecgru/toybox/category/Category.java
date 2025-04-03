@@ -1,4 +1,4 @@
-package br.edu.fatecgru.toybox.model.entity;
+package br.edu.fatecgru.toybox.category;
 
 import jakarta.persistence.*;
 
@@ -19,10 +19,6 @@ public class Category {
 
 
     public Category() {}
-
-    public Category(Integer id) {
-        this.id = id;
-    }
 
     public Category(Integer id, String name, String imageUrl) {
         this.id = id;
