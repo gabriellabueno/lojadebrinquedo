@@ -14,7 +14,7 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     public ResponseEntity<?> findAll() {
-        List<Category> categories = categoryRepository.findAll();
+        List<CategoryEntity> categories = categoryRepository.findAll();
 
         if( categories.isEmpty() ) {
             String message = "Não há categorias cadastradas!";

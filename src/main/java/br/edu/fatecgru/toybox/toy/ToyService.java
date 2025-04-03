@@ -3,9 +3,6 @@ package br.edu.fatecgru.toybox.toy;
 import br.edu.fatecgru.toybox.category.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,119 +11,74 @@ import java.util.List;
 public class ToyService {
 
     @Autowired
-    private ToyRepository toyRepository;
+    private ToyRepository repository;
 
     @Autowired
     private CategoryRepository categoryRepository;
 
 
-    public ResponseEntity<?> findAllByCategoryId(Integer id) {
-        List<Toy> toys = toyRepository.findAllByCategoryId(id);
-
-        if( toys.isEmpty() ) {
-            String message = "Não há brinquedos cadastrados para a categoria de ID " + id;
-            return errorTextResponse(HttpStatus.NOT_FOUND, message);
-        } else
-            return ResponseEntity.ok(toys);
-
+    public List<ToyEntity> findAll() {
+        return repository.findAll();
     }
 
-    public ResponseEntity<?> findAll() {
-        List<Toy> toys = toyRepository.findAll();
-
-        if( toys.isEmpty() ) {
-            String message = "Não há brinquedos cadastrados!";
-            return errorTextResponse(HttpStatus.NOT_FOUND, message);
-        } else
-            return ResponseEntity.ok(toys);
+    public List<ToyEntity>findAllByCategoryId(Integer id) {
+        return repository.findAllByCategoryId(id);
     }
 
-    public ResponseEntity<?> findById(Integer id) {
-        Toy toy = toyRepository.findById(id).orElse(null);
-
-        if (toy != null) {
-            return ResponseEntity.ok(toy);
-        } else {
-            String message = "Brinquedo de ID " + id + " não encontrado!";
-            return errorTextResponse(HttpStatus.NOT_FOUND, message);
-        }
+    public ToyEntity findById(Integer id) {
+        return repository.findById(id).orElse(null);
     }
 
-    public ResponseEntity<?> create(Toy obj) {
-        Toy toySearch = toyRepository.findByName(obj.getName());
-        Integer categoryId = obj.getCategoryId();
-        String message = "";
+    public ToyEntity create(ToyEntity obj) {
 
-        if (toySearch != null) {
-            message = "Brinquedo já cadastrado! ID: " + toySearch.getId();
-            return errorTextResponse(HttpStatus.CONFLICT, message);
-
-        } else if (!categoryRepository.existsById(categoryId)) {
-            message = "Categoria de ID " + categoryId + " não encontrada!";
-            return errorTextResponse(HttpStatus.NOT_FOUND, message);
-
-        } else {
-            toyRepository.save(obj);
-            message = "Brinquedo cadastrado com sucesso!";
-            return okTextResponse(message);
+        ToyEntity toy = repository.findByName( obj.getName() );
+        if (toy != null ) {
+            throw new IllegalArgumentException(
+                    "Brinquedo já cadastrado com nome: " + obj.getName() );
         }
 
-    }
-
-    public ResponseEntity<?> update(Integer id, Toy obj) {
-        Integer categoryId = obj.getCategoryId();
-        String message = "";
-
-        if( !toyRepository.existsById(id) ) {
-            message = "Brinquedo de ID " + id + " não encontrado!";
-            return errorTextResponse(HttpStatus.NOT_FOUND, message);
-
-        } else if ( !categoryRepository.existsById(categoryId) ) {
-            message = "Categoria de ID " + categoryId + " não encontrada!";
-            return errorTextResponse(HttpStatus.NOT_FOUND, message);
-
-        } else {
-            Toy toy = toyRepository.findById(id).get();
-
-            toy.setName(        obj.getName() );
-            toy.setPrice(       obj.getPrice() );
-            toy.setBrand(       obj.getBrand() );
-            toy.setImageUrl(    obj.getImageUrl() );
-            toy.setDescription( obj.getDescription() );
-            toy.setCategoryId(  obj.getCategoryId() );
-
-            toyRepository.save(toy);
-
-            message = "Brinquedo de ID " + id + " atualizado com sucesso!";
-            return okTextResponse(message);
+        boolean categoryExists = categoryRepository.existsById( obj.getCategoryId() );
+        if (!categoryExists) {
+            throw new IllegalArgumentException(
+                    "Categoria não encontrada com ID: " + obj.getCategoryId() );
         }
 
-    }
-
-    public ResponseEntity<?> delete(Integer id) {
-        String message = "";
-
-        if ( toyRepository.existsById(id) ) {
-            toyRepository.deleteById(id);
-            message = "Brinquedo de ID " + id + " removido com sucesso!";
-            return okTextResponse(message);
-        } else
-            message = "Brinquedo de ID " + id + " não encontrado!";
-            return errorTextResponse(HttpStatus.NOT_FOUND, message);
+        return repository.save(obj);
     }
 
 
-    // RESPOSTAS HTTP
-    public static ResponseEntity<String> okTextResponse(String message) {
-        return ResponseEntity.ok()
-                .contentType(MediaType.TEXT_PLAIN)
-                .body(message);
+    public ToyEntity update(Integer id, ToyEntity obj) {
+
+        ToyEntity toy = repository.findById(id).get();
+
+        if ( toy.getId().equals(id) ) {
+            throw new IllegalArgumentException(
+                    "Brinquedo não encontrado com ID: " + id);
+        }
+
+        boolean categoryExists = categoryRepository.existsById( obj.getCategoryId() );
+        if ( !categoryExists ) {
+            throw new IllegalArgumentException(
+                    "Categoria não encontrada com ID: " + obj.getCategoryId());
+        }
+
+        toy.setName(obj.getName());
+        toy.setBrand(obj.getBrand());
+        toy.setPrice(obj.getPrice());
+        toy.setDescription(obj.getDescription());
+        toy.setImageUrl(obj.getImageUrl());
+        toy.setCategoryId(obj.getCategoryId());
+
+        return repository.save(toy);
     }
 
-    public static ResponseEntity<String> errorTextResponse(HttpStatus status, String message) {
-        return ResponseEntity.status(status)
-                .contentType(MediaType.TEXT_PLAIN)
-                .body(message);
+    public void delete(Integer id) {
+        if ( !repository.existsById(id) ) {
+            throw new IllegalArgumentException(
+                    "Brinquedo não encontrado com ID: " + id);
+        }
+
+        repository.deleteById(id);
     }
 
 }

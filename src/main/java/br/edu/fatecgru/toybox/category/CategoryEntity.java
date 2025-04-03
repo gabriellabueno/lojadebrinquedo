@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="category")
-public class Category {
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +18,9 @@ public class Category {
     private String imageUrl;
 
 
-    public Category() {}
+    public CategoryEntity() {}
 
-    public Category(Integer id, String name, String imageUrl) {
+    public CategoryEntity(Integer id, String name, String imageUrl) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;

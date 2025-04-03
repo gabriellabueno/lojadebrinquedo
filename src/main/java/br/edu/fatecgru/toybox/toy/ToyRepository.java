@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ToyRepository extends JpaRepository<Toy, Integer> {
+public interface ToyRepository extends JpaRepository<ToyEntity, Integer> {
 
-    List<Toy> findAllByCategoryId(Integer id);
+    List<ToyEntity> findAllByCategoryId(Integer id);
 
-    Toy findByName(String name);
+    ToyEntity findByName(String name);
 
 }

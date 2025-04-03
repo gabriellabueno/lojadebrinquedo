@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryService service;
 
     @GetMapping
     public ResponseEntity<?> findAll() {
-        return categoryService.findAll();
+        return service.findAll();
     }
 
 }
