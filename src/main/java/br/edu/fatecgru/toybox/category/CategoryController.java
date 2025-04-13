@@ -1,13 +1,15 @@
 package br.edu.fatecgru.toybox.category;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("store/catalog")
 public class CategoryController {
 
@@ -15,8 +17,15 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<?> findAll() {
-        return service.findAll();
+    public String getAll(Model model) {
+        List<CategoryEntity> categories = service.findAll();
+
+        if( categories.isEmpty() ) {
+            model.addAttribute("message", "Não há brinquedos cadastrados.");
+        } else
+            model.addAttribute("categories", categories);
+
+        return "catalog/catalog";
     }
 
 }

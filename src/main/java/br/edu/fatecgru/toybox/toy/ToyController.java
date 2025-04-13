@@ -1,5 +1,6 @@
 package br.edu.fatecgru.toybox.toy;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("store")
 public class ToyController {
 
     @Autowired
@@ -75,7 +77,7 @@ public class ToyController {
     public String create(@ModelAttribute ToyEntity toy, Model model) {
         try {
             service.create(toy);
-        } catch (IllegalArgumentException ex) {
+        } catch (Exception ex) {
             model.addAttribute("errorMessage", ex.getMessage());
             model.addAttribute("toy", toy);
             return "create";
@@ -88,7 +90,7 @@ public class ToyController {
     public String update(@PathVariable Integer id, @ModelAttribute ToyEntity toy, Model model) {
         try {
             service.update(id, toy);
-        } catch (IllegalArgumentException ex) {
+        } catch (EntityNotFoundException ex) {
             model.addAttribute("errorMessage", ex.getMessage());
             model.addAttribute("toy", toy);
             return "edit";
@@ -100,7 +102,7 @@ public class ToyController {
     public String delete(@PathVariable("id") Integer id, Model model) {
         try {
             service.delete(id);
-        } catch (IllegalArgumentException ex) {
+        } catch (EntityNotFoundException ex) {
             model.addAttribute("errorMessage", ex.getMessage());
         }
         return "redirect:/adm";
