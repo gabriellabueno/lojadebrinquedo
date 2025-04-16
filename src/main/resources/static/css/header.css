@@ -1,0 +1,21 @@
+header {
+    display: flex;
+    padding: 20px;
+    justify-content: space-around;
+}
+
+store-name {
+
+    align-self: center;
+}
+
+.logo > img {
+    max-width: 100px;
+    display: block;
+}
+
+*,
+*::before,
+*::after {
+    outline: 2px solid lime;
+}

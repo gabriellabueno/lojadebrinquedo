@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Toybox | Home</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
 </head>
 <body>
-    <h1>Brinquedos em Destaque</h1>
+    <div th:replace="~{fragments/header :: header}"></div>
 </body>
 </html>
