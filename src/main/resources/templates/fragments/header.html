@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/header.css}">
-</head>
+<html lang="pt-br">
+
 <body>
     <header th:fragment="header">
-        <div class="logo">
-            <img th:src="@{/images/logo.png}" alt="Loja ToyBox">
-        </div>
-        <div class="store-name">
-            <h1>ToyBox</h1>
+        <div class="header-container">
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Loja ToyBox">
+            </div>
+            <div class="name-container">
+                <h1>ToyBox</h1>
+            </div>
         </div>
     </header>
 </body>

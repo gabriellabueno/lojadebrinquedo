@@ -1,21 +1,27 @@
-header {
+
+
+.header-container {
     display: flex;
-    padding: 20px;
-    justify-content: space-around;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 8px;
 }
 
-store-name {
-
-    align-self: center;
+.name-container {
+    flex-grow: 1;
 }
+
+h1 {
+    font: 40px "Cherry Bomb One", system-ui;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
 
 .logo > img {
-    max-width: 100px;
+    max-width: 60px;
     display: block;
+    margin-left: 5px;
 }
 
-*,
-*::before,
-*::after {
-    outline: 2px solid lime;
-}

@@ -1,0 +1,29 @@
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    max-width: 25%;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.menu-title {
+    font: 22px "Raleway", sans-serif;
+    font-weight: 900;
+    text-align: center;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+}
+
+.menu-list > li {
+    font: 20px "Raleway", sans-serif;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 40px 0 40px 0;
+    padding-left: 10px;
+}
+
+.menu-list > li:hover {
+    color: var(--secondary-color);
+}
