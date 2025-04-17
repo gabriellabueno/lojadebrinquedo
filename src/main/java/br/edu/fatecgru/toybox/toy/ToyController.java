@@ -25,13 +25,13 @@ public class ToyController {
         } else
             model.addAttribute("toys", toys);
 
-        return "home";
+        return "pages/home";
     }
 
 
     // TELA CATÁLOGO - BRINQUEDO POR CATEGORIA
 
-    @GetMapping("/category/{id}")
+    @GetMapping("/catalog/category/{id}")
     public String getByCategory(@PathVariable("id") Integer id, Model model) {
         List<ToyEntity> toys = service.findAllByCategoryId(id);
 
@@ -41,7 +41,7 @@ public class ToyController {
         } else
             model.addAttribute("toys", toys);
 
-        return "catalog/category";
+        return "pages/catalog/category";
     }
 
     // APRESENTAÇÃO BRINQUEDO
@@ -55,7 +55,7 @@ public class ToyController {
             model.addAttribute("message", "Brinquedo de ID " + id + " não encontrado.");
         }
 
-        return "catalog/toy";
+        return "pages/catalog/toy";
     }
 
 
@@ -70,7 +70,7 @@ public class ToyController {
         } else
             model.addAttribute("toys", toys);
 
-        return "adm/adm";
+        return "pages/adm/adm";
     }
 
     @PostMapping("/adm/create")
@@ -82,7 +82,7 @@ public class ToyController {
             model.addAttribute("toy", toy);
             return "create";
         }
-        return "redirect:/adm/create";
+        return "redirect:pages/adm/create";
 
     }
 
@@ -95,7 +95,7 @@ public class ToyController {
             model.addAttribute("toy", toy);
             return "edit";
         }
-        return "redirect:/adm/edit";
+        return "redirect:pages/adm/edit";
     }
 
     @DeleteMapping("/adm/delete/{id}")
@@ -105,8 +105,13 @@ public class ToyController {
         } catch (EntityNotFoundException ex) {
             model.addAttribute("errorMessage", ex.getMessage());
         }
-        return "redirect:/adm";
+        return "redirect:pages/adm/adm";
 
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "pages/about";
     }
 
 

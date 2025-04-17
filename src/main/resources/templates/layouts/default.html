@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Loja ToyBox">
+            </div>
+            <p class="store-name">ToyBox</p>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <!-- Menu Navigation -->
+        <nav class="nav-container">
+            <p class="nav-title">Menu Principal</p>
+            <ul class="nav-list">
+                <li>
+                    <a th:href="@{/}">Home</a>
+                </li>
+                <li>
+                    <a th:href="@{/}">Catálogo de Brinquedos</a>
+                </li>
+                <li>
+                    <a th:href="@{/}">Administração</a>
+                </li>
+                <li>
+                    <a th:href="@{/}">Sobre a Equipe</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Content -->
+        <section class="content" layout:fragment="content">
+        </section>
+
+    </main>
+
+
+
+</body>
+</html>

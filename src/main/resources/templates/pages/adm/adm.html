@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/default}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Toybox | Administração</title>
@@ -7,7 +9,6 @@
 
 </head>
 <body>
-    <div th:replace="~{fragments/header :: header}"></div>
     <h1>Administração de Brinquedos</h1>
 
 </body>

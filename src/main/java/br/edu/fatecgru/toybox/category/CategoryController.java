@@ -10,13 +10,13 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("store/catalog")
+@RequestMapping("store")
 public class CategoryController {
 
     @Autowired
     private CategoryService service;
 
-    @GetMapping
+    @GetMapping("/catalog")
     public String getAll(Model model) {
         List<CategoryEntity> categories = service.findAll();
 
