@@ -49,6 +49,7 @@
 
 .content {
     flex: 1;
+    padding: 15px;
 }
 
 
@@ -63,7 +64,7 @@
     margin-right: 5px;
 }
 
-.nav-title {
+.main-title {
     font: 22px "Raleway", sans-serif;
     font-weight: 900;
     color: var(--secondary-color);
