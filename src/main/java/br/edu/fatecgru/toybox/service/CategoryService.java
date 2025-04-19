@@ -1,5 +1,7 @@
-package br.edu.fatecgru.toybox.category;
+package br.edu.fatecgru.toybox.service;
 
+import br.edu.fatecgru.toybox.entity.CategoryEntity;
+import br.edu.fatecgru.toybox.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package br.edu.fatecgru.toybox.toy;
+package br.edu.fatecgru.toybox.entity;
 
 import jakarta.persistence.*;
 

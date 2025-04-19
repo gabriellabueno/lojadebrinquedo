@@ -1,7 +1,9 @@
-package br.edu.fatecgru.toybox.toy;
+package br.edu.fatecgru.toybox.service;
 
-import br.edu.fatecgru.toybox.category.CategoryRepository;
+import br.edu.fatecgru.toybox.entity.ToyEntity;
+import br.edu.fatecgru.toybox.repository.CategoryRepository;
 
+import br.edu.fatecgru.toybox.repository.ToyRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,22 +48,15 @@ public class ToyService {
                     "Brinquedo já cadastrado com nome: " + obj.getName() );
         }
 
-        boolean categoryExists = categoryRepository.existsById( obj.getCategoryId() );
-        if (!categoryExists) {
-            throw new EntityNotFoundException(
-                    "Categoria não encontrada com ID: " + obj.getCategoryId() );
-        }
+//        if ( !categoryRepository.existsById( obj.getCategoryId()) ) {
+//            throw new EntityNotFoundException(
+//                    "Categoria não encontrada com ID: " + obj.getCategoryId() );
+//        }
+
 
         ToyEntity toy = new ToyEntity();
-        toy.setName(obj.getName());
-        toy.setBrand(obj.getBrand());
-        toy.setPrice(obj.getPrice());
-        toy.setDescription(obj.getDescription());
-        toy.setImageUrl(obj.getImageUrl());
-        toy.setCategoryId(obj.getCategoryId());
-
-        return toyRepository.save(toy);
-    }
+        return getToyEntity(obj, toy);
+   }
 
     @Transactional
     public ToyEntity update(Integer id, ToyEntity obj) {
@@ -71,19 +66,22 @@ public class ToyService {
                     "Brinquedo não encontrado com ID: " + id);
         }
 
-        boolean categoryExists = categoryRepository.existsById( obj.getCategoryId() );
-        if ( !categoryExists ) {
+        if ( !categoryRepository.existsById( obj.getCategoryId()) ) {
             throw new EntityNotFoundException(
                     "Categoria não encontrada com ID: " + obj.getCategoryId());
         }
 
         ToyEntity toy = toyRepository.findById(id).get();
-        toy.setName(obj.getName());
-        toy.setBrand(obj.getBrand());
-        toy.setPrice(obj.getPrice());
-        toy.setDescription(obj.getDescription());
-        toy.setImageUrl(obj.getImageUrl());
-        toy.setCategoryId(obj.getCategoryId());
+        return getToyEntity(obj, toy);
+    }
+
+    private ToyEntity getToyEntity(ToyEntity obj, ToyEntity toy) {
+        toy.setName(        obj.getName());
+        toy.setBrand(       obj.getBrand());
+        toy.setPrice(       obj.getPrice());
+        toy.setDescription( obj.getDescription());
+        toy.setImageUrl(    obj.getImageUrl());
+        toy.setCategoryId(  obj.getCategoryId());
 
         return toyRepository.save(toy);
     }
