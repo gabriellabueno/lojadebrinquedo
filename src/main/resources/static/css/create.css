@@ -1,0 +1,7 @@
+.input-data {
+    padding: 100px;
+}
+
+.form-group > label {
+    color: var(--text-color);
+}

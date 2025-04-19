@@ -15,7 +15,6 @@
         <h1 class="main-title">Brinquedos em Destaque</h1>
 
         <div th:each="toy : ${toys}">
-            <!-- Inclui o fragmento e passa o objeto toy como variável -->
             <div th:replace="~{fragments/toy-simple-card :: toyComponent(toy=${toy})}">
             </div>
         </div>

@@ -5,7 +5,7 @@
 
 .header-container,
 .nav-container,
-.nav-list > li,
+.nav-item,
 .content
 {
     border-radius: 20px;
@@ -42,7 +42,7 @@
 
 .main-container {
     display: flex;
-    height: 90vh;
+    height: 100%;
 }
 
 /* CONTENT */
@@ -73,14 +73,14 @@
     padding: 15px;
 }
 
-.nav-list > li {
+.nav-item {
     font: 18px "Raleway", sans-serif;
     font-weight: 600;
     color: var(--text-color);
     padding: 20px;
 }
 
-.nav-list > li:hover {
+.nav-item:hover {
     background-color: var(--secondary-color);
     color: var(--primary-color);
     font-weight: 700;
