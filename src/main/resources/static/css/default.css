@@ -1,3 +1,7 @@
+body {
+    background: var(--purple);
+}
+
 .header-container,
 .main-container {
     margin: 5px;
@@ -14,7 +18,7 @@
 .header-container,
 .nav-container,
 .content {
-    background-color: var(--primary-color);
+    background-color: var(--dark-blue);
 }
 
 /* HEADER */
@@ -27,7 +31,7 @@
 .store-name {
     font: 40px "Cherry Bomb One", system-ui;
     text-align: center;
-    color: var(--secondary-color);
+    color: var(--purple);
     flex-grow: 1;
 }
 
@@ -58,7 +62,7 @@
 .nav-container {
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 300px;
     min-width: fit-content;
     padding: 15px 15px 15px 1%;
     margin-right: 5px;
@@ -67,7 +71,7 @@
 .main-title {
     font: 22px "Raleway", sans-serif;
     font-weight: 900;
-    color: var(--secondary-color);
+    color: var(--green);
     text-align: center;
     text-transform: uppercase;
     padding: 15px;
@@ -76,13 +80,13 @@
 .nav-item {
     font: 18px "Raleway", sans-serif;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--white);
     padding: 20px;
 }
 
 .nav-item:hover {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    background-color: var(--green);
+    color: var(--dark-blue);
     font-weight: 700;
     opacity: 0.8;
     cursor: pointer;

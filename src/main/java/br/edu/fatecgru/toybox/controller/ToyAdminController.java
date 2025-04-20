@@ -33,7 +33,7 @@ public class ToyAdminController {
         } else
             model.addAttribute("toys", toys);
 
-        return "admin/dashboard";
+        return "pages/admin/dashboard";
     }
 
     @GetMapping("/new-toy")

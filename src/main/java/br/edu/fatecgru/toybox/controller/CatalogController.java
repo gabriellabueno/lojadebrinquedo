@@ -45,7 +45,7 @@ public class CatalogController {
         } else
             model.addAttribute("categories", categories);
 
-        return "catalog/categories";
+        return "pages/catalog/categories";
     }
 
     // BRINQUEDO POR CATEGORIA

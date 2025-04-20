@@ -1,6 +1,8 @@
 
-    <div th:fragment="toyComponent">
-        <img th:src="@{${toy.imageUrl}}" alt="Imagem do Brinquedo">
-        <p th:text="${toy.name}">Nome do Brinquedo</p>
-        <p th:text="${toy.price}">Preço do Brinquedo</p>
-    </div>
+
+<a th:href="@{/}" th:fragment="toyCard" class="card">
+    <img th:src="@{${toy.imageUrl}}" alt="Imagem do Brinquedo">
+    <p th:text="${toy.name}">Nome do Brinquedo</p>
+    <p th:text="'R$ ' + ${toy.price}">Preço do Brinquedo</p>
+</a>
+

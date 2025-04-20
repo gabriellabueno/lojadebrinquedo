@@ -1,7 +1,8 @@
 :root {
-    --primary-color: #BE1A1A;
-    --secondary-color: #FFD93B;
-    --text-color: #fafafafa;
-    --font-cherry-bomb: 40px "Cherry Bomb One", system-ui;
-    --font-raleway: 22px "Raleway", sans-serif;
+    --dark-blue: #211951;
+    --purple: #9F70FD;
+    --green: #00FF9C;
+    --white: #fafafafa;
+    --font-title: 40px "Cherry Bomb One", system-ui;
+    --font-text: 22px "Raleway", sans-serif;
 }

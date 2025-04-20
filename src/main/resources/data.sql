@@ -1,9 +1,9 @@
 
 INSERT INTO category (name, image_url) VALUES
-        ('Bonecos', 'Bonecos - https://rihappy.vtexassets.com/arquivos/ids/6545800-800-auto'),
-        ('Carros de brinquedo', 'https://rihappy.vtexassets.com/arquivos/ids/338641-800-auto'),
+        ('Bonecos', 'https://rihappy.vtexassets.com/arquivos/ids/6545800-800-auto'),
+        ('Carros de Brinquedo', 'https://rihappy.vtexassets.com/arquivos/ids/338641-800-auto'),
         ('Esportes', 'https://rihappy.vtexassets.com/arquivos/ids/6202962-800-auto'),
-        ('Jogos de tabuleiro', 'https://rihappy.vtexassets.com/arquivos/ids/5787817-800-auto'),
+        ('Jogos de Tabuleiro', 'https://rihappy.vtexassets.com/arquivos/ids/5787817-800-auto'),
         ('Pelúcias', 'https://rihappy.vtexassets.com/arquivos/ids/6155000-800-auto');
 
 INSERT INTO toy (id, name, price, brand, image_url, description, category_id) VALUES

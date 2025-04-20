@@ -6,18 +6,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Toybox | Home</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/display-cards.css}">
 </head>
 
 <body>
 
     <section layout:fragment="content">
+
         <h1 class="main-title">Brinquedos em Destaque</h1>
 
-        <div th:each="toy : ${toys}">
-            <div th:replace="~{fragments/toy-simple-card :: toyComponent(toy=${toy})}">
+        <div class="container">
+
+            <div th:each="toy : ${toys}">
+                <div th:replace="~{fragments/toy-simple-card :: toyCard(toy=${toy})}"></div>
             </div>
+
         </div>
+
     </section>
 
 </body>

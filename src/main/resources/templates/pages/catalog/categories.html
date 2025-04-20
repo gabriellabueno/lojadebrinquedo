@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{layouts/default}" xmlns:layout="http://www.w3.org/1999/xhtml">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
 <head>
     <meta charset="UTF-8">
     <title>Toybox | Catálogo</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <link rel="stylesheet" th:href="@{/css/display-cards.css}">
 </head>
 <body>
-    <h1>Categorias</h1>
+
+    <section layout:fragment="content">
+
+        <h1 class="main-title">Categorias</h1>
+
+        <div class="container">
+            <div th:each="category : ${categories}">
+                <div th:replace="~{fragments/category-card :: categoryCard(category=${category})}"></div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
