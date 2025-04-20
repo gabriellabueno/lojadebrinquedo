@@ -47,6 +47,7 @@ public class ToyAdminController {
 
         if (result.hasErrors()) {
             model.addAttribute("categories", categoryService.findAll());
+            return "pages/admin/create";
         }
 
         try {
@@ -62,7 +63,7 @@ public class ToyAdminController {
 
 
     @PutMapping("update-toy/{id}")
-    public String update(@PathVariable Integer id, @ModelAttribute ToyEntity toy, Model model) {
+    public String update(@PathVariable("id")  Long id, @ModelAttribute ToyEntity toy, Model model) {
         try {
             toyService.update(id, toy);
         } catch (EntityNotFoundException ex) {
@@ -74,7 +75,7 @@ public class ToyAdminController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Integer id, Model model) {
+    public String delete(@PathVariable("id") Long id, Model model) {
         try {
             toyService.delete(id);
         } catch (EntityNotFoundException ex) {

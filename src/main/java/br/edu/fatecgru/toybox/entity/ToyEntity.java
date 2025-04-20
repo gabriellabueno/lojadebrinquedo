@@ -9,9 +9,8 @@ import java.math.BigDecimal;
 public class ToyEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id", columnDefinition = "BIGINT")
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -25,26 +24,22 @@ public class ToyEntity {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
+    @Column(name = "description", nullable = false)
+    private String description;
+
     @Column(name = "category_id", nullable = false)
     private Integer categoryId;
 
-    @Column(name = "description")
-    private String description;
 
 
     public ToyEntity() {
     }
 
-    public ToyEntity(String name, BigDecimal price, String brand, String imageUrl, Integer categoryId, String description) {
-        this.name = name;
-        this.price = price;
-        this.brand = brand;
-        this.imageUrl = imageUrl;
-        this.categoryId = categoryId;
-        this.description = description;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -80,6 +75,13 @@ public class ToyEntity {
         this.imageUrl = imageUrl;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Integer getCategoryId() {
         return categoryId;
@@ -87,13 +89,5 @@ public class ToyEntity {
 
     public void setCategoryId(Integer category) {
         this.categoryId = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

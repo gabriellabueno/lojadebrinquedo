@@ -68,7 +68,7 @@ public class CatalogController {
     // http://localhost:8080/store/catalog/toy/1
 
     @GetMapping("/toy/{id}")
-    public String getById(@PathVariable("id") Integer id, Model model) {
+    public String getById(@PathVariable("id") Long id, Model model) {
         ToyEntity toy = toyService.findById(id);
 
         if (toy != null) {

@@ -11,6 +11,10 @@ public interface ToyRepository extends JpaRepository<ToyEntity, Integer> {
 
     List<ToyEntity> findAllByCategoryId(Integer id);
 
+    ToyEntity findById(Long id);
 
-    boolean existsByName(String name);
+    void deleteById(Long id);
+
+    boolean existsById(Long id);
+
 }

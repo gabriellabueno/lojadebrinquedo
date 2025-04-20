@@ -6,6 +6,7 @@ import br.edu.fatecgru.toybox.repository.CategoryRepository;
 import br.edu.fatecgru.toybox.repository.ToyRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,34 +37,33 @@ public class ToyService {
     }
 
     @Transactional(readOnly = true)
-    public ToyEntity findById(Integer id) {
-        return toyRepository.findById(id).orElse(null);
+    public ToyEntity findById(Long id) {
+        return toyRepository.findById(id);
     }
 
    @Transactional
-    public ToyEntity create(ToyEntity obj) {
+    public ToyEntity create(ToyEntity toy) {
 
-        if ( toyRepository.existsByName(obj.getName()) ) {
-            throw new EntityExistsException(
-                    "Brinquedo já cadastrado com nome: " + obj.getName() );
+        if ( toyRepository.existsById( toy.getId()) ) {
+           throw new EntityExistsException(
+                   "Brinquedo já cadastrado! ID: " + toy.getCategoryId() );
         }
 
-//        if ( !categoryRepository.existsById( obj.getCategoryId()) ) {
-//            throw new EntityNotFoundException(
-//                    "Categoria não encontrada com ID: " + obj.getCategoryId() );
-//        }
+        if ( !categoryRepository.existsById( toy.getCategoryId()) ) {
+            throw new EntityNotFoundException(
+                    "Categoria não encontrada com ID: " + toy.getCategoryId() );
+        }
 
+        return toyRepository.save(toy);
 
-        ToyEntity toy = new ToyEntity();
-        return getToyEntity(obj, toy);
    }
 
     @Transactional
-    public ToyEntity update(Integer id, ToyEntity obj) {
+    public ToyEntity update(Long id,  ToyEntity obj) {
 
-        if ( !toyRepository.existsById(id) ) {
-            throw new EntityNotFoundException(
-                    "Brinquedo não encontrado com ID: " + id);
+        if ( !toyRepository.existsById( id ) ) {
+           throw new EntityNotFoundException(
+                   "Brinquedo não encontrado com ID: " + id );
         }
 
         if ( !categoryRepository.existsById( obj.getCategoryId()) ) {
@@ -71,22 +71,13 @@ public class ToyService {
                     "Categoria não encontrada com ID: " + obj.getCategoryId());
         }
 
-        ToyEntity toy = toyRepository.findById(id).get();
-        return getToyEntity(obj, toy);
+            obj.setId(id);
+            return toyRepository.save(obj);
+
     }
 
-    private ToyEntity getToyEntity(ToyEntity obj, ToyEntity toy) {
-        toy.setName(        obj.getName());
-        toy.setBrand(       obj.getBrand());
-        toy.setPrice(       obj.getPrice());
-        toy.setDescription( obj.getDescription());
-        toy.setImageUrl(    obj.getImageUrl());
-        toy.setCategoryId(  obj.getCategoryId());
-
-        return toyRepository.save(toy);
-    }
-
-    public void delete(Integer id) {
+    @Transactional
+    public void delete(Long id) {
         if ( !toyRepository.existsById(id) ) {
             throw new EntityNotFoundException(
                     "Brinquedo não encontrado com ID: " + id);

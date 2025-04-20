@@ -17,14 +17,8 @@ public class CategoryEntity {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-
     public CategoryEntity() {}
 
-    public CategoryEntity(Integer id, String name, String imageUrl) {
-        this.id = id;
-        this.name = name;
-        this.imageUrl = imageUrl;
-    }
 
     public void setId(Integer id) {
         this.id = id;
