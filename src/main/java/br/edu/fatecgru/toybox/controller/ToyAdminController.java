@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class ToyAdminController {
     }
 
     @PostMapping("/new-toy")
-    public String create(@ModelAttribute("toy") ToyEntity toy, BindingResult result, Model model) {
+    public String create(@ModelAttribute("toy") ToyEntity toy, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             model.addAttribute("categories", categoryService.findAll());
@@ -52,7 +53,8 @@ public class ToyAdminController {
 
         try {
             toyService.create(toy);
-            return "redirect:/admin/new-toy?success";
+            redirectAttributes.addFlashAttribute("successMessage", "Brinquedo cadastrado com sucesso!");
+            return "redirect:/admin/new-toy";
         } catch (Exception ex) {
             model.addAttribute("errorMessage", ex.getMessage());
             model.addAttribute("toy", toy); // Mantém os dados preenchidos

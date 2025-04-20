@@ -46,7 +46,7 @@ public class ToyService {
 
         if ( toyRepository.existsById( toy.getId()) ) {
            throw new EntityExistsException(
-                   "Brinquedo já cadastrado! ID: " + toy.getCategoryId() );
+                   "Brinquedo já cadastrado! ID: " + toy.getId() );
         }
 
         if ( !categoryRepository.existsById( toy.getCategoryId()) ) {
