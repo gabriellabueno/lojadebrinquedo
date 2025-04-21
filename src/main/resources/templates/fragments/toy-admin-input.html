@@ -5,34 +5,34 @@
     <div class="form-group">
       <label for="id">Código</label>
       <input type="text" class="form-control" id="id"
-             th:field="*{toy.id}"
+             th:field="*{id}"
              th:readonly="${readOnly}" required>
     </div>
 
     <div class="form-group">
       <label for="name">Nome</label>
       <input type="text" class="form-control" id="name"
-             th:field="*{toy.name}" required>
+             th:field="*{name}" required>
     </div>
 
     <div class="form-group">
       <label for="price">Preço</label>
-      <input th:field="*{toy.price}" type="number" class="form-control" id="price" placeholder="R$" step="0.01" required>
+      <input th:field="*{price}" type="number" class="form-control" id="price" placeholder="R$" step="0.01" required>
     </div>
 
     <div class="form-group">
       <label for="brand">Marca</label>
-      <input th:field="*{toy.brand}" type="text" class="form-control" id="brand" required>
+      <input th:field="*{brand}" type="text" class="form-control" id="brand" required>
     </div>
 
     <div class="form-group">
       <label for="imageUrl">Imagem</label>
-      <input th:field="*{toy.imageUrl}" type="text" class="form-control" id="imageUrl" required>
+      <input th:field="*{imageUrl}" type="text" class="form-control" id="imageUrl" required>
     </div>
 
     <div class="form-group">
       <label for="categoryId">Categoria</label>
-      <select th:field="*{toy.categoryId}" class="form-control" id="categoryId" required>
+      <select th:field="*{categoryId}" class="form-control" id="categoryId" required>
         <option value="">Selecione uma categoria</option>
         <option th:each="category : ${categories}"
                 th:value="${category.id}"
@@ -42,7 +42,7 @@
 
     <div class="form-group">
       <label for="description">Descrição</label>
-      <input type="text" class="form-control" id="description" th:field="*{toy.description}">
+      <input type="text" class="form-control" id="description" th:field="*{description}">
     </div>
 
     <button type="submit" class="btn btn-primary">CADASTRAR</button>

@@ -40,7 +40,6 @@ public class ToyAdminController {
     public String newToy(Model model) {
 
         model.addAttribute("readOnly", false);
-
         model.addAttribute("toy", new ToyEntity());
         model.addAttribute("categories", categoryService.findAll());
         return "pages/admin/create";
