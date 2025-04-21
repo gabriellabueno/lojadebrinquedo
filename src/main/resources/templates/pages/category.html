@@ -21,9 +21,9 @@
 
                 <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
 
-                    <div th:each="toy : ${toys}">
-                        <div th:replace="~{fragments/toy-simple-card :: toyCard(toy=${toy})}"></div>
-                    </div>
+                <div th:each="toy : ${toys}">
+                    <div th:replace="~{fragments/toy-simple-card :: toyCard(toy=${toy})}"></div>
+                </div>
 
         </div>
     </section>

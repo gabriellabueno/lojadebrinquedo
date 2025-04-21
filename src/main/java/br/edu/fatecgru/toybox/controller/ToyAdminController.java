@@ -38,23 +38,23 @@ public class ToyAdminController {
 
     @GetMapping("/new-toy")
     public String newToy(Model model) {
+
+        model.addAttribute("readOnly", false);
+
         model.addAttribute("toy", new ToyEntity());
         model.addAttribute("categories", categoryService.findAll());
         return "pages/admin/create";
     }
 
     @PostMapping("/new-toy")
-    public String create(@ModelAttribute("toy") ToyEntity toy, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    public String create(@ModelAttribute("toy") ToyEntity toy, Model model, RedirectAttributes redirectAttributes) {
 
-        if (result.hasErrors()) {
-            model.addAttribute("categories", categoryService.findAll());
-            return "pages/admin/create";
-        }
+        model.addAttribute("categories", categoryService.findAll());
 
         try {
             toyService.create(toy);
             redirectAttributes.addFlashAttribute("successMessage", "Brinquedo cadastrado com sucesso!");
-            return "redirect:/admin/new-toy";
+            return "pages/admin/create";
         } catch (Exception ex) {
             model.addAttribute("errorMessage", ex.getMessage());
             model.addAttribute("toy", toy); // Mantém os dados preenchidos
@@ -63,17 +63,32 @@ public class ToyAdminController {
         }
     }
 
+    @GetMapping("/update-toy/{id}")
+    public String editToy(@PathVariable("id") Long id, Model model) {
+        ToyEntity toy = toyService.findById(id);
+
+        model.addAttribute("readOnly", true);
+        model.addAttribute("toy", toy);
+        model.addAttribute("categories", categoryService.findAll());
+
+        return "pages/admin/update";
+    }
+
 
     @PutMapping("update-toy/{id}")
-    public String update(@PathVariable("id")  Long id, @ModelAttribute ToyEntity toy, Model model) {
+    public String update(@PathVariable("id") Long id, @ModelAttribute ToyEntity toy, Model model, RedirectAttributes redirectAttributes) {
+
         try {
             toyService.update(id, toy);
+            redirectAttributes.addFlashAttribute("successMessage", "Brinquedo atualizado com sucesso!");
+            return "pages/admin/update";
         } catch (EntityNotFoundException ex) {
             model.addAttribute("errorMessage", ex.getMessage());
             model.addAttribute("toy", toy);
-            return "edit";
         }
-        return "redirect:pages/admin/edit";
+
+        return "pages/admin/update/" + id;
+
     }
 
     @DeleteMapping("/{id}")
@@ -83,6 +98,6 @@ public class ToyAdminController {
         } catch (EntityNotFoundException ex) {
             model.addAttribute("errorMessage", ex.getMessage());
         }
-        return "redirect:pages/admin/dashboard";
+        return "pages/admin/dashboard";
     }
 }

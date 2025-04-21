@@ -48,10 +48,10 @@ public class CatalogController {
     }
 
     // BRINQUEDO POR CATEGORIA
-    @GetMapping("/catalog/category/{categoryName}/{id}")
+    @GetMapping("/catalog/category/{name}/{id}")
     public String getToysByCategory(
             @PathVariable("id") Integer categoryId,
-            @PathVariable("categoryName") String categoryName,
+            @PathVariable("name") String categoryName,
             Model model
     ) {
         CategoryEntity category = categoryService.findById(categoryId);
@@ -62,7 +62,7 @@ public class CatalogController {
             message = "Categoria não encontrada";
             model.addAttribute("message", message);
             return "pages/category";
-        }
+        } else
 
         if (toys.isEmpty()) {
             message = "Nenhum brinquedo encontrado na categoria " + category.getName();

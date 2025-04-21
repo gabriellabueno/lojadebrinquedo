@@ -18,8 +18,16 @@
 
         <div class="container">
             <div th:each="category : ${categories}">
-                <div th:replace="~{fragments/category-card :: categoryCard(category=${category})}"></div>
-            </div>
+
+                <a th:href="@{/catalog/category/{categoryName}/{id}
+                    (categoryName=${#strings.replace(#strings.toLowerCase(category.name), ' ', '-')},
+                    id=${category.id})}"
+                   th:fragment="categoryCard(category)" class="card">
+
+                    <img th:src="@{${category.imageUrl}}" alt="Imagem da Categoria">
+                    <p th:text="${category.name}">Nome da Categoria</p>
+
+                </a>            </div>
         </div>
     </section>
 </body>
