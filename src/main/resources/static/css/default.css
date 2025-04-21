@@ -25,21 +25,22 @@ body {
 
 .header-container {
     display: flex;
-    padding: 8px;
+    padding: 8px 10px;
 }
 
 .store-name {
     font: 40px "Cherry Bomb One", system-ui;
     text-align: center;
-    color: var(--purple);
+    color: var(--green);
     flex-grow: 1;
 }
 
 
 .logo > img {
-    max-width: 60px;
+    max-width: 50px;
     display: block;
-    margin-left: 5px;
+    margin: 8px;
+    fill: var(--green);
 }
 
 /* CONTAINER PRINCIPAL - MENU NAV + CONTENT */
@@ -69,7 +70,7 @@ body {
 }
 
 .main-title {
-    font: 22px "Raleway", sans-serif;
+    font: 24px "Raleway", sans-serif;
     font-weight: 900;
     color: var(--green);
     text-align: center;
