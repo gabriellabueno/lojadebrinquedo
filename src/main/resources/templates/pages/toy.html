@@ -6,13 +6,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Toybox | Categoria X</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Toybox | Brinquedo</title>
+    <link rel="stylesheet" th:href="@{/css/toy-full-card.css}">
 </head>
 <body>
-    <h1>Categoria X</h1>
+    <h1>Brinquedo</h1>
 
     <section layout:fragment="content">
+
+        <div class="container">
+
+                <div th:replace="~{fragments/toy-full-card :: toyCard(toy=${toy})}"></div>
+        </div>
 
     </section>
 

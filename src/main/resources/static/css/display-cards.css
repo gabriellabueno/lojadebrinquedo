@@ -25,16 +25,17 @@ h1 {
     background: var(--green);
 }
 
-img {
+.card > img {
     width: 200px;
     border-radius: 20px;
     margin-bottom: 8px;
 }
 
-p {
+.card > p {
     font: var(--font-text);
     font-size: 18px;
     font-weight: 700;
     color: var(--dark-blue);
     margin: 5px 0;
+    text-align: center;
 }

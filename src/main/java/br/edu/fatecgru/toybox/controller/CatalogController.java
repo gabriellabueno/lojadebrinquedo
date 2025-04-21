@@ -9,13 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("catalog")
 public class CatalogController {
 
     @Autowired
@@ -24,44 +21,58 @@ public class CatalogController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/featured-toys")
+    @GetMapping("/home")
     public String getFeaturedToys(Model model) {
         List<ToyEntity> toys = toyService.findAll();
 
         if( toys.isEmpty() ) {
             model.addAttribute("message", "Não há brinquedos cadastrados.");
-        } else
+        } else {
             model.addAttribute("toys", toys);
+        }
 
         return "pages/home";
     }
 
-    @GetMapping("/categories")
+    @GetMapping("/catalog")
     public String getCategories(Model model) {
         List<CategoryEntity> categories = categoryService.findAll();
 
         if( categories.isEmpty() ) {
             model.addAttribute("message", "Não há brinquedos cadastrados.");
-        } else
+        } else {
             model.addAttribute("categories", categories);
+        }
 
-        return "pages/catalog/categories";
+        return "pages/catalog";
     }
 
     // BRINQUEDO POR CATEGORIA
-    // http://localhost:8080/store/catalog/category?id=1
+    @GetMapping("/catalog/category/{categoryName}/{id}")
+    public String getToysByCategory(
+            @PathVariable("id") Integer categoryId,
+            @PathVariable("categoryName") String categoryName,
+            Model model
+    ) {
+        CategoryEntity category = categoryService.findById(categoryId);
+        List<ToyEntity> toys = toyService.findAllByCategoryId(categoryId);
+        String message = "";
 
-    @GetMapping("/category")
-    public String getByCategory(@RequestParam("id") Integer id, Model model) {
-        List<ToyEntity> toys = toyService.findAllByCategoryId(id);
-
-        if( toys.isEmpty() ) {
-            String message = "Não há brinquedos cadastrados para a categoria de ID " + id;
+        if (category == null) {
+            message = "Categoria não encontrada";
             model.addAttribute("message", message);
-        } else
-            model.addAttribute("toys", toys);
+            return "pages/category";
+        }
 
-        return "pages/catalog/category";
+        if (toys.isEmpty()) {
+            message = "Nenhum brinquedo encontrado na categoria " + category.getName();
+            model.addAttribute("message", message);
+        } else {
+            model.addAttribute("toys", toys);
+            model.addAttribute("categoryName", category.getName());
+        }
+
+        return "pages/category";
     }
 
     // APRESENTAÇÃO BRINQUEDO
@@ -69,6 +80,7 @@ public class CatalogController {
 
     @GetMapping("/toy/{id}")
     public String getById(@PathVariable("id") Long id, Model model) {
+
         ToyEntity toy = toyService.findById(id);
 
         if (toy != null) {
@@ -77,7 +89,7 @@ public class CatalogController {
             model.addAttribute("message", "Brinquedo de ID " + id + " não encontrado.");
         }
 
-        return "pages/catalog/toy";
+        return "pages/toy";
     }
 
 }
