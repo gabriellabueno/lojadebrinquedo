@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,11 +28,18 @@ public class ToyAdminController {
     @GetMapping("/dashboard")
     public String adminDashboard(Model model) {
         List<ToyEntity> toys = toyService.findAll();
+        List<String> categories = new ArrayList<>();
 
         if( toys.isEmpty() ) {
             model.addAttribute("message", "Não há brinquedos cadastrados.");
-        } else
+        } else {
+
+            for (ToyEntity toy : toys)
+                categories.add(categoryService.findById(toy.getCategoryId()).getName());
+
             model.addAttribute("toys", toys);
+            model.addAttribute("categories", categories);
+        }
 
         return "pages/admin/dashboard";
     }
@@ -42,6 +50,7 @@ public class ToyAdminController {
         model.addAttribute("readOnly", false);
         model.addAttribute("toy", new ToyEntity());
         model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("Action", "Cadastrar");
         return "pages/admin/create";
     }
 
@@ -52,7 +61,7 @@ public class ToyAdminController {
 
         try {
             toyService.create(toy);
-            redirectAttributes.addFlashAttribute("successMessage", "Brinquedo cadastrado com sucesso!");
+            model.addAttribute("successMessage", "Brinquedo cadastrado com sucesso!");
             return "pages/admin/create";
         } catch (Exception ex) {
             model.addAttribute("errorMessage", ex.getMessage());
@@ -69,17 +78,18 @@ public class ToyAdminController {
         model.addAttribute("readOnly", true);
         model.addAttribute("toy", toy);
         model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("Action", "Atualizar");
 
         return "pages/admin/update";
     }
 
 
     @PutMapping("update-toy/{id}")
-    public String update(@PathVariable("id") Long id, @ModelAttribute ToyEntity toy, Model model, RedirectAttributes redirectAttributes) {
+    public String update(@ModelAttribute("toy") ToyEntity toy, @PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
 
         try {
             toyService.update(id, toy);
-            redirectAttributes.addFlashAttribute("successMessage", "Brinquedo atualizado com sucesso!");
+            model.addAttribute("successMessage", "Brinquedo atualizado com sucesso!");
             return "pages/admin/update";
         } catch (EntityNotFoundException ex) {
             model.addAttribute("errorMessage", ex.getMessage());
