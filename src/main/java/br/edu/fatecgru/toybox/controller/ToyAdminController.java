@@ -50,13 +50,14 @@ public class ToyAdminController {
         model.addAttribute("readOnly", false);
         model.addAttribute("toy", new ToyEntity());
         model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("Action", "Cadastrar");
+        model.addAttribute("action", "Cadastrar");
         return "pages/admin/create";
     }
 
     @PostMapping("/new-toy")
     public String create(@ModelAttribute("toy") ToyEntity toy, Model model, RedirectAttributes redirectAttributes) {
 
+        model.addAttribute("action", "Cadastrar");
         model.addAttribute("categories", categoryService.findAll());
 
         try {
@@ -78,7 +79,7 @@ public class ToyAdminController {
         model.addAttribute("readOnly", true);
         model.addAttribute("toy", toy);
         model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("Action", "Atualizar");
+        model.addAttribute("action", "Atualizar");
 
         return "pages/admin/update";
     }
@@ -86,6 +87,8 @@ public class ToyAdminController {
 
     @PutMapping("update-toy/{id}")
     public String update(@ModelAttribute("toy") ToyEntity toy, @PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
+
+        model.addAttribute("action", "Atualizar");
 
         try {
             toyService.update(id, toy);
