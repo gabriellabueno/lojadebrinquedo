@@ -28,17 +28,11 @@ public class ToyAdminController {
     @GetMapping("/dashboard")
     public String adminDashboard(Model model) {
         List<ToyEntity> toys = toyService.findAll();
-        List<String> categories = new ArrayList<>();
 
         if( toys.isEmpty() ) {
             model.addAttribute("message", "Não há brinquedos cadastrados.");
         } else {
-
-            for (ToyEntity toy : toys)
-                categories.add(categoryService.findById(toy.getCategoryId()).getName());
-
             model.addAttribute("toys", toys);
-            model.addAttribute("categories", categories);
         }
 
         return "pages/admin/dashboard";

@@ -32,13 +32,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="toy, current : ${toys}">
+            <tr th:each="toy : ${toys}">
                 <td th:text="${toy.name}"></td>
-                <td th:text="${categories[current.index]}"></td>
+                <td th:text="${toy.category.name}"></td>
                 <td th:text="${toy.price}"></td>
                 <td>
                     <a th:href="@{/admin/update-toy/{id}(id=${toy.id})}">Editar</a>
-                    &nbsp;
                     <a href="">Excluir</a>
                 </td>
             </tr>

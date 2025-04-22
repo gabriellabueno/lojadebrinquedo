@@ -27,9 +27,13 @@ public class ToyEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private CategoryEntity category;
+
+    // Para operações de escrita
     @Column(name = "category_id", nullable = false)
     private Integer categoryId;
-
 
 
     public ToyEntity() {
@@ -83,6 +87,7 @@ public class ToyEntity {
         this.description = description;
     }
 
+
     public Integer getCategoryId() {
         return categoryId;
     }
@@ -90,4 +95,13 @@ public class ToyEntity {
     public void setCategoryId(Integer category) {
         this.categoryId = category;
     }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
+
 }

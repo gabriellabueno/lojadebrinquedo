@@ -51,7 +51,6 @@ public class CatalogController {
     @GetMapping("/catalog/category/{name}/{id}")
     public String getToysByCategory(
             @PathVariable("id") Integer categoryId,
-            @PathVariable("name") String categoryName,
             Model model
     ) {
         CategoryEntity category = categoryService.findById(categoryId);
