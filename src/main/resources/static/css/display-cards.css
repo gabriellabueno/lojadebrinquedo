@@ -11,14 +11,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--purple);
+    background: var(--background);
     padding: 30px;
     border-radius: 20px;
     width: fit-content;
 }
 
 .card:hover {
-    background: var(--green);
+    background: var(--secondary);
 }
 
 .card > img {
@@ -31,7 +31,7 @@
     font: var(--font-text);
     font-size: 18px;
     font-weight: 700;
-    color: var(--dark-blue);
+    color: var(--primary);
     margin-top: 15px;
     text-align: center;
 }

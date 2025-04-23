@@ -1,37 +1,53 @@
-.content {
-    font: 16px "Raleway", sans-serif;
-    font-weight: 600;
+
+table {
+    border-collapse: separate;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.content a {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--white);
-
-
+table,
+table > td {
+    border: 1px solid var(--background);
 }
 
-.content a:hover {
-    background-color: var(--green);
-    color: var(--dark-blue);
-    font-weight: 700;
-    opacity: 0.8;
-    cursor: pointer;
-    padding: 3px;
-    border-radius: 10px;
-}
-
-.custom-table {
-
-}
-
-.custom-table th {
+.table-header > th {
+    background-color: var(--primary);
+    color: var(--background);
+    font-size: 18px;
     font-weight: 800;
+    text-align: center;
 }
 
-.custom-table th, .custom-table td {
-    padding: 18px 50px;
-    background-color: var(--purple);
-    color: var(--dark-blue);
+.table-row > td {
+    background-color: var(--background);
+    font-weight: 600;
+    height: 25px;
 }
+
+.controls {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.crud-btn {
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 20px;
+    border: none;
+    padding: 5px 10px;
+    font-weight: 600
+}
+
+.crud-btn:hover {
+    background: var(--secondary);
+    color: var(--primary);
+}
+
+.btn-new {
+    background: var(--background);
+    color: var(--primary);
+    font-weight: 800;
+    padding: 10px;
+}
+
 
