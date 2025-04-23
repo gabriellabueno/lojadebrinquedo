@@ -7,11 +7,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -38,72 +36,91 @@ public class ToyAdminController {
         return "pages/admin/dashboard";
     }
 
-    @GetMapping("/new-toy")
-    public String newToy(Model model) {
 
+
+    @GetMapping("/new-toy")
+    public String newToyForm(Model model) {
+
+        model.addAttribute("title", "Cadastrar");
+        model.addAttribute("method", "post");
+        model.addAttribute("action", "/admin/new-toy");
         model.addAttribute("readOnly", false);
-        model.addAttribute("toy", new ToyEntity());
         model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("action", "Cadastrar");
-        return "pages/admin/create";
+
+        // Se o atributo "toy" estiver presente nos Flash Attributes (após erro),
+        // é automaticamente adicionado ao Model
+        // Caso contrário, novo ToyEntity é criado
+        if (!model.containsAttribute("toy")) {
+            model.addAttribute("toy", new ToyEntity());
+        }
+
+        return "pages/admin/create-update";
     }
 
     @PostMapping("/new-toy")
-    public String create(@ModelAttribute("toy") ToyEntity toy, Model model, RedirectAttributes redirectAttributes) {
-
-        model.addAttribute("action", "Cadastrar");
-        model.addAttribute("categories", categoryService.findAll());
+    public String create(@ModelAttribute("toy") ToyEntity toy,
+                         RedirectAttributes redirectAttributes) {
 
         try {
             toyService.create(toy);
-            model.addAttribute("successMessage", "Brinquedo cadastrado com sucesso!");
-            return "pages/admin/create";
+            redirectAttributes.addFlashAttribute("successMessage",
+                    "Brinquedo cadastrado com sucesso!");
         } catch (Exception ex) {
-            model.addAttribute("errorMessage", ex.getMessage());
-            model.addAttribute("toy", toy); // Mantém os dados preenchidos
-            model.addAttribute("categories", categoryService.findAll());
-            return "pages/admin/create";
+            redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
+
+            // Mantém dados preenchidos via Flash Attribute
+            redirectAttributes.addFlashAttribute("toy", toy);
         }
+
+        return "redirect:/admin/new-toy";
     }
+
+
 
     @GetMapping("/update-toy/{id}")
-    public String editToy(@PathVariable("id") Long id, Model model) {
-        ToyEntity toy = toyService.findById(id);
+    public String editToyForm(@PathVariable("id") Long id, Model model) {
 
+        model.addAttribute("title", "Atualizar");
+        model.addAttribute("method", "put");
+        model.addAttribute("action", "/admin/update-toy/" + id);
         model.addAttribute("readOnly", true);
-        model.addAttribute("toy", toy);
+
+        model.addAttribute("toy", toyService.findById(id));
         model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("action", "Atualizar");
 
-        return "pages/admin/update";
+        return "pages/admin/create-update";
     }
-
 
     @PutMapping("update-toy/{id}")
-    public String update(@ModelAttribute("toy") ToyEntity toy, @PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
-
-        model.addAttribute("action", "Atualizar");
-
+    public String update(@ModelAttribute("toy") ToyEntity toy,
+                         @PathVariable("id") Long id,
+                         RedirectAttributes redirectAttributes,
+                         Model model) {
         try {
             toyService.update(id, toy);
-            model.addAttribute("successMessage", "Brinquedo atualizado com sucesso!");
-            return "pages/admin/update";
+            redirectAttributes.addFlashAttribute("successMessage",
+                    "Brinquedo atualizado com sucesso!");
         } catch (EntityNotFoundException ex) {
-            model.addAttribute("errorMessage", ex.getMessage());
-            model.addAttribute("toy", toy);
+            redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
         }
 
-        return "pages/admin/update/" + id;
+        model.addAttribute("toy", toy); // Mantém dados preenchidos
 
+        return "redirect:/admin/update-toy/" + id;
     }
 
-    @DeleteMapping("/{id}")
+
+
+
+    @DeleteMapping("remove-toy/{id}")
     public String delete(@PathVariable("id") Long id, Model model) {
+
         try {
             toyService.delete(id);
         } catch (EntityNotFoundException ex) {
             model.addAttribute("errorMessage", ex.getMessage());
         }
-        return "pages/admin/dashboard";
+
+        return "redirect:/admin/dashboard";
     }
 }
