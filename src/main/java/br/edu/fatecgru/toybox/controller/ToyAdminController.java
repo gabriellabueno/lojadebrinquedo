@@ -110,15 +110,16 @@ public class ToyAdminController {
     }
 
 
-
-
     @DeleteMapping("remove-toy/{id}")
-    public String delete(@PathVariable("id") Long id, Model model) {
+    public String delete(@PathVariable("id") Long id,
+                         RedirectAttributes redirectAttributes) {
 
         try {
             toyService.delete(id);
+            redirectAttributes.addFlashAttribute("successMessage",
+                    "Brinquedo removido com sucesso!");
         } catch (EntityNotFoundException ex) {
-            model.addAttribute("errorMessage", ex.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
         }
 
         return "redirect:/admin/dashboard";

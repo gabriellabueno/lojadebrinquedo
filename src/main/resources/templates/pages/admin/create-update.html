@@ -17,17 +17,8 @@
 
         <h1 class="main-title">[[${title}]] BRINQUEDO</h1>
 
-        <!-- Alerta de Sucesso -->
-        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
-            <span th:text="${successMessage}"></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-        </div>
-
-        <!-- Alerta de Erro -->
-        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
-            <span th:text="${errorMessage}"></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-        </div>
+        <!-- Alertas de Sucesso / Erro -->
+        <div th:replace="~{fragments/alerts :: alerts}"></div>
 
 
         <form th:action="@{${action}}" th:object="${toy}" method="post">

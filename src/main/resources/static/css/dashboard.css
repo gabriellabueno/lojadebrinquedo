@@ -50,4 +50,9 @@ table > td {
     padding: 10px;
 }
 
+.confirm-delete-text {
+    color: grey;
+    font-style: italic;
+    margin-top: 10px;
+}
 
