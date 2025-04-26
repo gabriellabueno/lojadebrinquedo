@@ -13,8 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping("admin")
-public class ToyAdminController {
+public class ToyController {
 
     @Autowired
     private ToyService toyService;
@@ -23,22 +22,26 @@ public class ToyAdminController {
     private CategoryService categoryService;
 
 
-    @GetMapping("/dashboard")
-    public String adminDashboard(Model model) {
-        List<ToyEntity> toys = toyService.findAll();
+    // APRESENTAÇÃO BRINQUEDO
+    // http://localhost:8080/store/catalog/toy/1
 
-        if( toys.isEmpty() ) {
-            model.addAttribute("message", "Não há brinquedos cadastrados.");
+    // READ
+    @GetMapping("toy/{id}")
+    public String getById(@PathVariable("id") Long id, Model model) {
+
+        ToyEntity toy = toyService.findById(id);
+
+        if (toy != null) {
+            model.addAttribute("toy", toy);
         } else {
-            model.addAttribute("toys", toys);
+            model.addAttribute("message", "Brinquedo de ID " + id + " não encontrado.");
         }
 
-        return "pages/admin/dashboard";
+        return "pages/toy";
     }
 
-
-
-    @GetMapping("/new-toy")
+    // CREATE
+    @GetMapping("admin/new-toy")
     public String newToyForm(Model model) {
 
         model.addAttribute("title", "Cadastrar");
@@ -57,7 +60,7 @@ public class ToyAdminController {
         return "pages/admin/create-update";
     }
 
-    @PostMapping("/new-toy")
+    @PostMapping("admin/new-toy")
     public String create(@ModelAttribute("toy") ToyEntity toy,
                          RedirectAttributes redirectAttributes) {
 
@@ -75,9 +78,8 @@ public class ToyAdminController {
         return "redirect:/admin/new-toy";
     }
 
-
-
-    @GetMapping("/update-toy/{id}")
+    // UPDATE
+    @GetMapping("admin/update-toy/{id}")
     public String editToyForm(@PathVariable("id") Long id, Model model) {
 
         model.addAttribute("title", "Atualizar");
@@ -91,7 +93,7 @@ public class ToyAdminController {
         return "pages/admin/create-update";
     }
 
-    @PutMapping("update-toy/{id}")
+    @PutMapping("admin/update-toy/{id}")
     public String update(@ModelAttribute("toy") ToyEntity toy,
                          @PathVariable("id") Long id,
                          RedirectAttributes redirectAttributes,
@@ -110,7 +112,8 @@ public class ToyAdminController {
     }
 
 
-    @DeleteMapping("remove-toy/{id}")
+    // DELETE
+    @DeleteMapping("admin/remove-toy/{id}")
     public String delete(@PathVariable("id") Long id,
                          RedirectAttributes redirectAttributes) {
 

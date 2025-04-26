@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
-public class CatalogController {
+public class CategoryController {
 
     @Autowired
     private ToyService toyService;
@@ -21,20 +21,8 @@ public class CatalogController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/home")
-    public String getFeaturedToys(Model model) {
-        List<ToyEntity> toys = toyService.findAll();
 
-        if( toys.isEmpty() ) {
-            model.addAttribute("message", "Não há brinquedos cadastrados.");
-        } else {
-            model.addAttribute("toys", toys);
-        }
-
-        return "pages/home";
-    }
-
-    @GetMapping("/catalog")
+    @GetMapping("catalog")
     public String getCategories(Model model) {
         List<CategoryEntity> categories = categoryService.findAll();
 
@@ -47,9 +35,9 @@ public class CatalogController {
         return "pages/catalog";
     }
 
-    // BRINQUEDO POR CATEGORIA
-    @GetMapping("/catalog/category/{name}/{id}")
-    public String getToysByCategory(
+    // BRINQUEDOS DA CATEGORIA
+    @GetMapping("category/{name}/{id}")
+    public String getCategoryToys(
             @PathVariable("id") Integer categoryId,
             Model model
     ) {
@@ -74,21 +62,6 @@ public class CatalogController {
         return "pages/category";
     }
 
-    // APRESENTAÇÃO BRINQUEDO
-    // http://localhost:8080/store/catalog/toy/1
 
-    @GetMapping("/toy/{id}")
-    public String getById(@PathVariable("id") Long id, Model model) {
-
-        ToyEntity toy = toyService.findById(id);
-
-        if (toy != null) {
-            model.addAttribute("toy", toy);
-        } else {
-            model.addAttribute("message", "Brinquedo de ID " + id + " não encontrado.");
-        }
-
-        return "pages/toy";
-    }
 
 }
