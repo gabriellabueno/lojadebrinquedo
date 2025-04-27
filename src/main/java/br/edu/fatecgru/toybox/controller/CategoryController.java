@@ -22,7 +22,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
 
-    @GetMapping("catalog")
+    @GetMapping("category")
     public String getCategories(Model model) {
         List<CategoryEntity> categories = categoryService.findAll();
 
