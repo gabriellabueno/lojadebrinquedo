@@ -1,19 +1,16 @@
 
 
     <div th:fragment="toyCard(toy)">
-        <h3 th:text="${toy.name}">Nome do Brinquedo</h3>
 
         <div class="card">
-            <div>
-                <img th:src="@{${toy.imageUrl}}" alt="Imagem do Brinquedo" class="card-image">
-            </div>
+            <img th:src="@{${toy.imageUrl}}" alt="Imagem do Brinquedo" class="card-image">
+
             <div class="card-details">
-                <p th:text="'ID:  ' + ${toy.id}">ID</p>
+                <h3 th:text="${toy.name}">Nome do Brinquedo</h3>
                 <p th:text="'R$ ' + ${toy.price}">Preço</p>
                 <p th:text="'Marca:  ' + ${toy.brand}">Marca</p>
-                <p th:text="'Descrição:  ' + ${toy.description}">Descrição</p>
+                <p th:text="${toy.description}">Descrição</p>
             </div>
         </div>
-
 
     </div>

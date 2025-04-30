@@ -1,49 +1,35 @@
-body {
-    background: var(--background);
-}
-
-.header-container,
-.main-container {
-    margin: 5px;
-}
-
-.header-container,
-.nav-container,
-.nav-item,
-.content
-{
-    border-radius: 20px;
-}
-
-.header-container,
-.nav-container,
-.content {
-    background-color: var(--primary);
-}
 
 /* HEADER */
 
 .header-container {
     display: flex;
-    padding: 8px 10px;
+    padding: 10px;
+}
+
+.line {
+    border-bottom: 2px solid var(--primary);
+    margin: 0 20px;
+}
+
+
+.logo {
+    display: flex;
+}
+
+.logo > img {
+    max-width: 40px;
+    display: block;
+    margin: 5px 5px 0 0;
 }
 
 .store-name {
-    font: 40px "Cherry Bomb One", system-ui;
-    text-align: center;
-    color: var(--secondary);
+    font: 28px "Cherry Bomb One", system-ui;
+    color: var(--primary);
     flex-grow: 1;
 }
 
 
-.logo > img {
-    max-width: 50px;
-    display: block;
-    margin: 8px;
-    fill: var(--secondary);
-}
-
-/* CONTAINER PRINCIPAL - MENU NAV + CONTENT */
+/* NAV-BAR */
 
 .main-container {
     display: flex;
@@ -62,36 +48,39 @@ body {
 /* MENU NAV */
 
 .nav-container {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    width: 300px;
-    min-width: fit-content;
-    padding: 15px 15px 15px 1%;
-    margin-right: 5px;
+    justify-content: flex-end;
 }
+
+.nav-bar {
+    display: flex;
+    gap: 4.5rem;
+    margin-right: 80px;
+    align-items: center;
+}
+
+
+.nav-item {
+    font: 18px "Raleway", sans-serif;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.nav-item:hover {
+    color: var(--secondary);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
 
 .main-title {
     font: 24px "Raleway", sans-serif;
     font-weight: 900;
-    color: var(--secondary);
     text-align: center;
-    text-transform: uppercase;
-    padding: 15px;
-}
-
-.nav-item {
-    font: 18px "Raleway", sans-serif;
-    font-weight: 600;
-    color: var(--white);
-    padding: 20px;
-}
-
-.nav-item:hover {
-    background-color: var(--secondary);
     color: var(--primary);
-    font-weight: 700;
-    opacity: 0.8;
-    cursor: pointer;
+    text-transform: uppercase;
+    padding: 8px 0;
 }
 
 

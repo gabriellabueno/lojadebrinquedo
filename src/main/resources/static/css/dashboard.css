@@ -7,19 +7,19 @@ table {
 
 table,
 table > td {
-    border: 1px solid var(--background);
+    border: 1px solid var(--primary);
 }
 
 .table-header > th {
     background-color: var(--primary);
-    color: var(--background);
+    color: var(--secondary);
     font-size: 18px;
     font-weight: 800;
     text-align: center;
 }
 
 .table-row > td {
-    background-color: var(--background);
+    background-color: var(--primary);
     font-weight: 600;
     height: 25px;
 }
@@ -44,7 +44,7 @@ table > td {
 }
 
 .btn-new {
-    background: var(--background);
+    background: var(--primary);
     color: var(--primary);
     font-weight: 800;
     padding: 10px;

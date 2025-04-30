@@ -24,32 +24,35 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <img th:src="@{/images/logo.svg}" alt="Logo Loja ToyBox">
+                <img th:src="@{/images/logo.png}" alt="Logo Loja ToyBox">
+                <p class="store-name">ToyBox</p>
             </div>
-            <p class="store-name">ToyBox</p>
+
+
+            <!-- Menu Navigation -->
+            <nav class="nav-container">
+                <div class="nav-bar">
+                    <a th:href="@{/home}" class="nav-item">
+                        Home
+                    </a>
+                    <a th:href="@{/category}" class="nav-item">
+                        Catálogo
+                    </a>
+                    <a th:href="@{/auth/login}" class="nav-item">
+                        Administração
+                    </a>
+                    <a th:href="@{/about}" class="nav-item">
+                        Sobre
+                    </a>
+                </div>
+            </nav>
+
         </div>
+
+        <div class="line"></div>
     </header>
 
     <main class="main-container">
-
-        <!-- Menu Navigation -->
-        <nav class="nav-container">
-            <p class="main-title">Menu Principal</p>
-            <div class="nav-list">
-                <a th:href="@{/home}">
-                    <p class="nav-item">Home</p>
-                </a>
-                <a th:href="@{/category}">
-                    <p class="nav-item">Catálogo de Brinquedos</p>
-                </a>
-                <a th:href="@{/auth/login}">
-                    <p class="nav-item">Administração</p>
-                </a>
-                <a th:href="@{/about}">
-                    <p class="nav-item">Sobre a Equipe</p>
-                </a>
-            </div>
-        </nav>
 
         <!-- Content -->
         <section class="content" layout:fragment="content">
