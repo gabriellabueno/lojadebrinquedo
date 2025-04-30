@@ -3,7 +3,6 @@ package br.edu.fatecgru.toybox.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,16 +26,19 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().permitAll()
-                        .requestMatchers("/auth/login").hasRole("ADMIN").anyRequest().permitAll()
-                        .requestMatchers( "/auth/register").hasRole("ADMIN").anyRequest().permitAll()
+                        .requestMatchers("/css/**", "images/**").permitAll()
 
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/about").permitAll()
-                        .requestMatchers("/catalog").permitAll()
                         .requestMatchers("/category/**").permitAll()
                         .requestMatchers("/toy/**").permitAll()
-                        .anyRequest().permitAll()
+
+                        .requestMatchers("/auth/login").permitAll()
+
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers( "/auth/register").hasRole("ADMIN")
+
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

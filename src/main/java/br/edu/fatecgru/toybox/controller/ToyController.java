@@ -19,10 +19,6 @@ public class ToyController {
     @Autowired
     private CategoryService categoryService;
 
-
-    // APRESENTAÇÃO BRINQUEDO
-    // http://localhost:8080/store/catalog/toy/1
-
     // READ
     @GetMapping("toy/{id}")
     public String getById(@PathVariable("id") Long id, Model model) {

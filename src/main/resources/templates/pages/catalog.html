@@ -19,7 +19,7 @@
         <div class="container">
             <div th:each="category : ${categories}">
 
-                <a th:href="@{/catalog/category/{categoryName}/{id}
+                <a th:href="@{/category/{categoryName}/{id}
                     (categoryName=${#strings.replace(#strings.toLowerCase(category.name), ' ', '-')},
                     id=${category.id})}"
                    th:fragment="categoryCard(category)" class="card">
