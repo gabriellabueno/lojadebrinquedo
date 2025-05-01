@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class StoreController {
@@ -17,7 +20,15 @@ public class StoreController {
 
     @GetMapping("/home")
     public String getFeaturedToys(Model model) {
-        List<ToyEntity> toys = toyService.findAll();
+
+        // Busca todos os brinquedos
+        // Filtra os brinquedos com Preço > 80
+        // Coleta resultado do filtro
+        List<ToyEntity> toys = toyService.findAll()
+                .stream()
+                .filter( toy ->  toy.getPrice().doubleValue() > 80.00)
+                .collect(Collectors.toList());
+
 
         if( toys.isEmpty() ) {
             model.addAttribute("message", "Não há brinquedos cadastrados.");

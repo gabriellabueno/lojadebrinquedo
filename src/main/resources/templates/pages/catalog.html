@@ -22,7 +22,8 @@
                 <a th:href="@{/category/{categoryName}/{id}
                     (categoryName=${#strings.replace(#strings.toLowerCase(category.name), ' ', '-')},
                     id=${category.id})}"
-                   th:fragment="categoryCard(category)" class="card">
+                   th:fragment="categoryCard(category)"
+                   class="card  d-flex flex-column align-items-center justify-content-center">
 
                     <img th:src="@{${category.imageUrl}}" alt="Imagem da Categoria">
                     <p th:text="${category.name}">Nome da Categoria</p>
