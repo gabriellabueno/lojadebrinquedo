@@ -24,7 +24,7 @@ public class JwtService {
 
             String token = JWT.create()
                     .withIssuer("auth")
-                    .withSubject(userEntity.getEmail())
+                    .withSubject(userEntity.getUsername())
                     .withExpiresAt(this.getExpirationDate())
                     .sign(algorithm);
             return token;

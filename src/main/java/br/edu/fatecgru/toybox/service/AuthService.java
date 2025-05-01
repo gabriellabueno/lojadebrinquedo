@@ -37,13 +37,22 @@ public class AuthService {
 
     public UserEntity register(UserEntity user){
         UserRole userRole = UserRole.ADMIN;
-        UserEntity newUser = new UserEntity(user.getEmail(), user.getPassword(), userRole);
+        UserEntity newUser = new UserEntity(
+                user.getName(),
+                user.getEmail(),
+                user.getPassword(),
+                userRole
+        );
 
         return userRepository.save(newUser);
     }
 
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
 }

@@ -1,17 +1,25 @@
 package br.edu.fatecgru.toybox.security;
 
+import br.edu.fatecgru.toybox.entity.UserEntity;
+import br.edu.fatecgru.toybox.repository.UserRepository;
+import br.edu.fatecgru.toybox.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.util.Set;
 
 @Configuration
 @EnableWebSecurity
@@ -26,14 +34,17 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/css/**", "images/**").permitAll()
+                                .requestMatchers(
+                                        "/css/**",
+                                        "/images/**",
+                                        "/home",
+                                        "/about",
+                                        "/category/**",
+                                        "/toy/**",
+                                        "/auth/login"
+                                ).permitAll()
 
-                        .requestMatchers("/home").permitAll()
-                        .requestMatchers("/about").permitAll()
-                        .requestMatchers("/category/**").permitAll()
-                        .requestMatchers("/toy/**").permitAll()
-
-                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
 
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")
 //                        .requestMatchers( "/auth/register").hasRole("ADMIN")
@@ -51,6 +62,20 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    CommandLineRunner initAdmin(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        return args -> {
+
+                UserEntity admin = new UserEntity();
+                admin.setName("root");
+                admin.setEmail("root@teste.com");
+                admin.setPassword(passwordEncoder.encode("167@fatec"));
+                admin.setUserRole(UserRole.ADMIN);
+                userRepository.save(admin);
+
+        };
     }
 
     @Bean

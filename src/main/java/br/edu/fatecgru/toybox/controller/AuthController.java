@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -16,59 +17,71 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private AuthService service;
+    private AuthService authService;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(Model model) {
+
+        model.addAttribute("user", new UserEntity());
+        model.addAttribute("method", "post");
+        model.addAttribute("action", "login");
         return "pages/admin/login";
     }
 
 
     @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password,
-                        Model model,
+    public String login(@ModelAttribute("user") UserEntity userInput,
+                        RedirectAttributes redirectAttributes,
                         HttpServletResponse response) {
 
+        UserEntity user = authService.findByEmail(userInput.getEmail());
 
-        if ( service.existsByEmail(email) ) {
-            Cookie cookie = service.login(email, passwordEncoder.encode(password));
+        if (user != null) {
+            Cookie cookie = authService.login(user.getUsername(), passwordEncoder.encode(user.getPassword()));
             response.addCookie(cookie);
             return "redirect:pages/admin/greetings";
 
         }
 
-        model.addAttribute("errorMessage", "Usuário não encontrado!");
+        redirectAttributes.addFlashAttribute("errorMessage", "Usuário não encontrado!");
         return "redirect:pages/admin/login";
 
     }
 
-    @GetMapping("/register")
+    @GetMapping("/registration")
     public String registerPage() {
-        return "pages/admin/login";
+        return "pages/admin/registration";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registration")
     public String register(@RequestParam String name,
                                    @RequestParam String email,
                                    @RequestParam String password,
-                                   Model model) {
+                           RedirectAttributes redirectAttributes) {
 
             try {
                 UserEntity newUser = new UserEntity();
                 newUser.setName(name);
                 newUser.setEmail(email);
                 newUser.setPassword(passwordEncoder.encode(password));
-                service.register(newUser);
-                model.addAttribute("successMessage", "Usuário cadastrado com sucesso!");
+                authService.register(newUser);
+                redirectAttributes.addFlashAttribute("successMessage", "Usuário cadastrado com sucesso!");
             } catch (Exception e) {
-                model.addAttribute("errorMessage", e.getMessage());
+                redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             }
 
-            return "pages/admin/register";
+            return "redirect:pages/admin/registration";
 
+    }
+
+    @GetMapping("/greetings")
+    public String greetingPage() {
+
+        return "redirect:pages/admin/greetings";
     }
 
 }

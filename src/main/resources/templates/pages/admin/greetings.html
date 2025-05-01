@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bem-vindo</title>
+
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
 </head>
 <body>
+    <section layout:fragment="content">
+        <h1 class="main-title">Bem-vindo de volta!</h1>
 
+        <div>
+            <a th:href="@{/auth/registration}">
+                <button class="btn">Novo Usuário</button>
+            </a>
+
+            <a th:href="@{/admin/dashboard}">
+                <button class="btn">Dashboard</button>
+            </a>
+        </div>
+    </section>
 </body>
 </html>

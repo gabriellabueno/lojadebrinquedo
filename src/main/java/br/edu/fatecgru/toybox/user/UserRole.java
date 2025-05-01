@@ -1,8 +1,8 @@
 package br.edu.fatecgru.toybox.user;
 
 public enum UserRole {
-    ADMIN("admin"),
-    USER("user");
+    ADMIN("ROLE_ADMIN"),
+    USER("ROLE_USER");
 
     private String role;
 

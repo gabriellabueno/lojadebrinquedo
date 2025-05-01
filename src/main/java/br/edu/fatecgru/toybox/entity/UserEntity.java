@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name="user")
 public class UserEntity implements UserDetails {
 
     @Id
@@ -23,7 +24,8 @@ public class UserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    public UserEntity(String email, String password, UserRole userRole) {
+    public UserEntity(String name, String email, String password, UserRole userRole) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.userRole = userRole;
@@ -34,7 +36,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.userRole == userRole.ADMIN)
+        if (this.userRole == UserRole.ADMIN)
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),
                             new SimpleGrantedAuthority("ROLE_USER"));
         else
