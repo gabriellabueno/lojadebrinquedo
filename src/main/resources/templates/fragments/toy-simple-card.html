@@ -1,6 +1,7 @@
 
 
-<a th:href="@{/toy/{id}(id=${toy.id})}" th:fragment="toyCard" class="card">
+<a th:href="@{/toy/{id}(id=${toy.id})}" th:fragment="toyCard"
+   class="card  d-flex flex-column align-items-center justify-content-center">
     <img th:src="@{${toy.imageUrl}}" alt="Imagem do Brinquedo">
     <p th:text="${toy.name}">Nome do Brinquedo</p>
     <p th:text="'R$ ' + ${toy.price}">Preço do Brinquedo</p>

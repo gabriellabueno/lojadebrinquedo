@@ -36,14 +36,14 @@
                 <td th:text="${toy.category.name}"></td>
                 <td th:text="${toy.price}"></td>
                 <td>
-                    <div class="controls">
+                    <div class="controls d-flex justify-content-evenly">
 
                         <a th:href="@{/admin/update-toy/{id}(id=${toy.id})}">
-                            <button class="crud-btn">Editar</button>
+                            <button class="btn">Editar</button>
                         </a>
 
                         <!-- Botão Excluir -->
-                        <button type="button" class="crud-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             Excluir
                         </button>
 
@@ -90,7 +90,7 @@
         </table>
 
         <a th:href="@{/admin/new-toy}">
-            <button class="crud-btn btn-new">Novo Brinquedo</button>
+            <button class="btn">Novo Brinquedo</button>
         </a>
 
 

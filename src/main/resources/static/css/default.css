@@ -3,7 +3,7 @@
 
 .header-container {
     display: flex;
-    padding: 10px;
+    padding: 8px;
 }
 
 .line {
@@ -14,63 +14,41 @@
 
 .logo {
     display: flex;
+    margin-left: 10px;
 }
 
 .logo > img {
-    max-width: 40px;
+    max-width: 30px;
     display: block;
     margin: 5px 5px 0 0;
 }
 
 .store-name {
-    font: 28px "Cherry Bomb One", system-ui;
+    font: 26px "Cherry Bomb One", system-ui;
     color: var(--primary);
     flex-grow: 1;
 }
 
-
 /* NAV-BAR */
 
-.main-container {
-    display: flex;
-    height: 100%;
-}
-
-/* CONTENT */
-
-.content {
+.nav-link {
     font: 16px "Raleway", sans-serif;
-    flex: 1;
-    padding: 30px;
-}
-
-
-/* MENU NAV */
-
-.nav-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.nav-bar {
-    display: flex;
-    gap: 4.5rem;
-    margin-right: 80px;
-    align-items: center;
-}
-
-
-.nav-item {
-    font: 18px "Raleway", sans-serif;
     font-weight: 700;
     color: var(--primary);
 }
 
-.nav-item:hover {
+.nav-link:hover {
     color: var(--secondary);
-    cursor: pointer;
     white-space: nowrap;
+}
+
+
+/* MAIN CONTENT */
+
+.content {
+    font: 16px "Raleway", sans-serif;
+    flex: 1;
+    margin: 30px 100px;
 }
 
 
@@ -80,7 +58,22 @@
     text-align: center;
     color: var(--primary);
     text-transform: uppercase;
-    padding: 8px 0;
 }
 
+/* BUTTONS */
+
+.btn {
+    background: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+}
 

@@ -1,26 +1,14 @@
+
 .input-data {
     padding: 15px 100px;
 }
 
 .form-group > label {
-    color: var(--white);
+    color: var(--primary);
     font-size: 18px;
     font-weight: 600;
     margin: 25px 0 10px 0;
 }
 
-.btn {
-    font-size: 18px;
-    background: var(--primary);
-    color: var(--primary);
-    border-radius: 20px;
-    border: none;
-    padding: 5px 10px;
-    font-weight: 800;
-    margin-top: 25px;
-}
 
-.btn:hover {
-    background: var(--secondary);
-    color: var(--primary);
-}
+

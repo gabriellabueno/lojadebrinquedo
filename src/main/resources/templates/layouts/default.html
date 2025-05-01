@@ -30,20 +30,12 @@
 
 
             <!-- Menu Navigation -->
-            <nav class="nav-container">
-                <div class="nav-bar">
-                    <a th:href="@{/home}" class="nav-item">
-                        Home
-                    </a>
-                    <a th:href="@{/category}" class="nav-item">
-                        Catálogo
-                    </a>
-                    <a th:href="@{/auth/login}" class="nav-item">
-                        Administração
-                    </a>
-                    <a th:href="@{/about}" class="nav-item">
-                        Sobre
-                    </a>
+            <nav class="d-flex justify-content-end w-100">
+                <div class="d-flex gap-5 align-items-center me-5">
+                    <a th:href="@{/home}" class="nav-link">Home</a>
+                    <a th:href="@{/category}" class="nav-link">Catálogo</a>
+                    <a th:href="@{/auth/login}" class="nav-link">Administração</a>
+                    <a th:href="@{/about}" class="nav-link">Sobre</a>
                 </div>
             </nav>
 
@@ -52,7 +44,7 @@
         <div class="line"></div>
     </header>
 
-    <main class="main-container">
+    <main class="main-container d-flex">
 
         <!-- Content -->
         <section class="content" layout:fragment="content">

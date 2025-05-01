@@ -1,50 +1,88 @@
-
 <div th:fragment="input-data" class="input-data">
 
-    <!-- Campos do Formulário -->
-    <div class="form-group">
-      <label for="id">Código</label>
-      <input type="text" class="form-control" id="id"
-             th:field="*{id}"
-             th:readonly="${readOnly}" required>
+    <!-- Linha 1: Código e Nome -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="id">Código</label>
+                <input type="text" class="form-control" id="id"
+                       th:field="*{id}"
+                       th:readonly="${readOnly}" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name"
+                       th:field="*{name}" required>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-      <label for="name">Nome</label>
-      <input type="text" class="form-control" id="name"
-             th:field="*{name}" required>
+    <!-- Linha 2: Preço e Marca -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="price">Preço</label>
+                <input th:field="*{price}" type="number" class="form-control"
+                       id="price" placeholder="R$" step="0.01" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="brand">Marca</label>
+                <input th:field="*{brand}" type="text" class="form-control"
+                       id="brand" required>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-      <label for="price">Preço</label>
-      <input th:field="*{price}" type="number" class="form-control" id="price" placeholder="R$" step="0.01" required>
+    <!-- Linha 3: URL da Imagem -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="imageUrl">URL da Imagem</label>
+                <input th:field="*{imageUrl}" type="text" class="form-control"
+                       id="imageUrl" required>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-      <label for="brand">Marca</label>
-      <input th:field="*{brand}" type="text" class="form-control" id="brand" required>
+    <!-- Linha 4: Categoria -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="categoryId">Categoria</label>
+                <select th:field="*{categoryId}" class="form-control"
+                        id="categoryId" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option th:each="category : ${categories}"
+                            th:value="${category.id}"
+                            th:text="${category.name}"></option>
+                </select>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-      <label for="imageUrl">URL da Imagem</label>
-      <input th:field="*{imageUrl}" type="text" class="form-control" id="imageUrl" required>
+    <!-- Linha 5: Descrição -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="description">Descrição</label>
+                <input type="text" class="form-control" id="description"
+                       th:field="*{description}">
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-      <label for="categoryId">Categoria</label>
-      <select th:field="*{categoryId}" class="form-control" id="categoryId" required>
-        <option value="">Selecione uma categoria</option>
-        <option th:each="category : ${categories}"
-                th:value="${category.id}"
-                th:text="${category.name}"></option>
-      </select>
-    </div>
+    <div class="form-group mt-4 d-flex gap-5 justify-content-center">
 
-    <div class="form-group">
-      <label for="description">Descrição</label>
-      <input type="text" class="form-control" id="description" th:field="*{description}">
-    </div>
+        <button type="submit" class="btn btn-primary">[[${title}]]</button>
 
-    <button type="submit" class="btn btn-primary">[[${title}]]</button>
+        <a th:href="@{/admin/dashboard}" class="btn btn-secondary">
+            Voltar
+        </a>
+
+    </div>
 
 </div>
