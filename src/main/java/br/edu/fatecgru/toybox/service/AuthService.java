@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.naming.AuthenticationException;
+
 @Service
 public class AuthService {
 
@@ -30,8 +32,11 @@ public class AuthService {
         var auth = authenticationManager.authenticate(usernamePassword);
         var token = jwtService.generateToken((UserEntity) auth.getPrincipal());
 
+        Cookie cookie = new Cookie("auth_token", token);
+        cookie.setPath("/"); // Disponível para todas as rotas
+
         // Adiciona token em cookie
-        return new Cookie("auth_token", token);
+        return cookie;
     }
 
 
