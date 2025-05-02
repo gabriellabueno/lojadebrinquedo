@@ -5,6 +5,8 @@ import br.edu.fatecgru.toybox.entity.UserEntity;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,9 @@ public class AuthController {
     @GetMapping("/login")
     public String loginPage(Model model) {
 
-        model.addAttribute("user", new UserEntity());
+        if (!model.containsAttribute("user")) {
+            model.addAttribute("user", new UserEntity());
+        }
         model.addAttribute("method", "post");
         model.addAttribute("action", "login");
         return "pages/admin/login";
@@ -34,22 +38,25 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("user") UserEntity userInput,
+    public String login(@ModelAttribute("user") UserEntity user,
                         RedirectAttributes redirectAttributes,
                         HttpServletResponse response) {
 
-        UserEntity user = authService.findByEmail(userInput.getEmail());
+            try {
+                Cookie cookie = authService.login(
+                        user.getEmail(), user.getPassword());
+                response.addCookie(cookie);
+                return "redirect:/auth/greetings";
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("errorMessage", "Senha ou usuário inválido!");
+                redirectAttributes.addFlashAttribute("user", user);
+                return "redirect:/auth/login";
+            }
+    }
 
-        if (user != null) {
-            Cookie cookie = authService.login(user.getUsername(), passwordEncoder.encode(user.getPassword()));
-            response.addCookie(cookie);
-            return "redirect:pages/admin/greetings";
-
-        }
-
-        redirectAttributes.addFlashAttribute("errorMessage", "Usuário não encontrado!");
-        return "redirect:pages/admin/login";
-
+    @GetMapping("/greetings")
+    public String greetingPage() {
+        return "pages/admin/greetings";
     }
 
     @GetMapping("/registration")
@@ -58,30 +65,26 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public String register(@RequestParam String name,
-                                   @RequestParam String email,
-                                   @RequestParam String password,
+    public String register(@ModelAttribute("user") UserEntity newUser,
                            RedirectAttributes redirectAttributes) {
 
-            try {
-                UserEntity newUser = new UserEntity();
-                newUser.setName(name);
-                newUser.setEmail(email);
-                newUser.setPassword(passwordEncoder.encode(password));
-                authService.register(newUser);
-                redirectAttributes.addFlashAttribute("successMessage", "Usuário cadastrado com sucesso!");
-            } catch (Exception e) {
-                redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            }
+        // Verifica se o email já existe antes de tentar salvar
+        if (authService.existsByEmail(newUser.getEmail())) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Email já cadastrado!");
+            redirectAttributes.addFlashAttribute("user", newUser); // Repopula o formulário
+            return "redirect:/auth/registration";
+        }
 
-            return "redirect:pages/admin/registration";
+        try {
+            newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+            authService.register(newUser);
+            redirectAttributes.addFlashAttribute("successMessage", "Usuário cadastrado com sucesso! Faça o login.");
+            return "redirect:/auth/registration";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao cadastrar: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("user", newUser); // Repopula o formulário
+            return "redirect:/auth/registration";
+        }
 
     }
-
-    @GetMapping("/greetings")
-    public String greetingPage() {
-
-        return "redirect:pages/admin/greetings";
-    }
-
 }

@@ -46,11 +46,11 @@ public class SecurityConfig {
 
                         .requestMatchers("/auth/**").permitAll()
 
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
-//                        .requestMatchers( "/auth/register").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers( "/auth/register").hasRole("ADMIN")
 
-                        .requestMatchers("/admin/**").permitAll()
-                        .requestMatchers( "/auth/register").permitAll()
+//                        .requestMatchers("/admin/**").permitAll()
+//                        .requestMatchers( "/auth/register").permitAll()
 
                         .anyRequest().authenticated()
                 )

@@ -4,6 +4,7 @@ import br.edu.fatecgru.toybox.service.JwtService;
 import br.edu.fatecgru.toybox.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class JwtFilter extends OncePerRequestFilter {
             var email = jwtService.validateToken(token);
             UserDetails user = userRepository.findByEmail(email);
 
+
             if (user != null) {
                 var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -46,12 +48,24 @@ public class JwtFilter extends OncePerRequestFilter {
 
 
     private String recoverToken(HttpServletRequest request){
+        // Tenta obter o token do cabeçalho Authorization (formato Bearer)
         String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            return authHeader.replace("Bearer ", "");
+        }
 
-        if (authHeader == null)
-            return null;
+        // Se não encontrou no cabeçalho, tenta obter do cookie
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("auth_token".equals(cookie.getName())) { // Verifica pelo nome do cookie
+                    return cookie.getValue(); // Retorna o valor do token no cookie
+                }
+            }
+        }
 
-        return authHeader.replace("Bearer ", "");
+        // Se não encontrou em nenhum lugar
+        return null;
     }
 
 }
