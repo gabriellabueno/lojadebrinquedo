@@ -22,9 +22,6 @@ public class AuthService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private JwtService jwtService;
 
     public Cookie login(String email, String password) {
@@ -34,6 +31,7 @@ public class AuthService {
 
         Cookie cookie = new Cookie("auth_token", token);
         cookie.setPath("/"); // Disponível para todas as rotas
+        cookie.setHttpOnly(true);
 
         // Adiciona token em cookie
         return cookie;
