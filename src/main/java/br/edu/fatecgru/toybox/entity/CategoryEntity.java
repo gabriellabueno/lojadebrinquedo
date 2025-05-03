@@ -2,6 +2,8 @@ package br.edu.fatecgru.toybox.entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Blob;
+
 @Entity
 @Table(name="category")
 public class CategoryEntity {
@@ -14,8 +16,9 @@ public class CategoryEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "image_url", nullable = false)
-    private String imageUrl;
+    @Column(name = "image", nullable = false)
+    @Lob
+    private byte[] image;
 
     public CategoryEntity() {}
 
@@ -36,11 +39,11 @@ public class CategoryEntity {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

@@ -3,6 +3,7 @@ package br.edu.fatecgru.toybox.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 
 @Entity
 @Table(name="toy")
@@ -21,8 +22,9 @@ public class ToyEntity {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Column(name = "image_url", nullable = false)
-    private String imageUrl;
+    @Column(name = "image", nullable = false)
+    @Lob
+    private byte[] image;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -71,12 +73,10 @@ public class ToyEntity {
         this.brand = brand;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+    public byte[] getImage() { return image; }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getDescription() {
