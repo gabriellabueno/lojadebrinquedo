@@ -31,3 +31,11 @@
     margin: 8px;
     text-align: center;
 }
+
+.card > h5 {
+    font: var(--font-text);
+    font-weight: 630;
+    color: var(--white);
+    margin: 8px;
+}
+
