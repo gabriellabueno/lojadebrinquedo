@@ -56,7 +56,7 @@ public class CategoryController {
             model.addAttribute("message", message);
         } else {
             model.addAttribute("toys", toys);
-            model.addAttribute("categoryName", category.getName());
+            model.addAttribute("category", category.getName());
         }
 
         return "pages/category";

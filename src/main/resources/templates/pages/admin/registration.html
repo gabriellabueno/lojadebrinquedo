@@ -5,7 +5,7 @@
       layout:decorate="~{layouts/default}">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Usuário</title>
+    <title> Admin | Cadastro de Usuário</title>
 
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 
@@ -17,32 +17,37 @@
     <!-- Alertas de Sucesso / Erro -->
     <div th:replace="~{fragments/alerts :: alerts}"></div>
 
-    <form>
+    <form th:action="registration" th:object="${user}" method="post">
+
         <div class="mb-3">
             <label for="exampleInputName" class="form-label">Nome Completo</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                   th:field="*{name}" required>
         </div>
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                   th:field="*{email}" required>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1"
+                   th:field="*{password}" required>
         </div>
 
         <div>
-            <a th:href="@{/auth/registration}">
-                <button class="btn btn-primary">Cadastrar</button>
-            </a>
-
-            <a th:href="@{/admin/dashboard}">
-                <button class="btn btn-primary">Dashboard</button>
-            </a>
+            <div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
         </div>
 
     </form>
+
+    <a th:href="@{/admin/home}">
+        <button class="btn btn-primary">Voltar</button>
+    </a>
+
 
 </section>
 </body>

@@ -10,7 +10,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.naming.AuthenticationException;
 
 @Service
 public class AuthService {
@@ -23,6 +22,11 @@ public class AuthService {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
 
     public Cookie login(String email, String password) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(email, password);
@@ -43,7 +47,7 @@ public class AuthService {
         UserEntity newUser = new UserEntity(
                 user.getName(),
                 user.getEmail(),
-                user.getPassword(),
+                passwordEncoder.encode(user.getPassword()),
                 userRole
         );
 

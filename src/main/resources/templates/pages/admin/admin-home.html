@@ -5,17 +5,17 @@
       layout:decorate="~{layouts/default}">
 <head>
     <meta charset="UTF-8">
-    <title>Bem-vindo</title>
+    <title>Admin | Bem-vindo</title>
 
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 
 </head>
 <body>
     <section layout:fragment="content">
-        <h1 class="main-title">Bem-vindo de volta!</h1>
+        <h1 class="main-title">Administração</h1>
 
         <div>
-            <a th:href="@{/auth/registration}">
+            <a th:href="@{/admin/registration}">
                 <button class="btn">Novo Usuário</button>
             </a>
 
@@ -23,9 +23,9 @@
                 <button class="btn">Dashboard</button>
             </a>
 
-            <a th:href="@{/auth/login}">
-                <button class="btn">Logout</button>
-            </a>
+            <form th:action="@{/auth/logout}">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
 
         </div>
     </section>

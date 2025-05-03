@@ -6,16 +6,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Toybox | Categoria X</title>
+    <title>Toybox | [[${category}]] </title>
 
     <link rel="stylesheet" th:href="@{/css/display-cards.css}">
 </head>
 <body>
-    <h1>Categoria X</h1>
 
     <section layout:fragment="content">
 
-        <h1 class="main-title" th:text="${categoryName}"></h1>
+        <h1 class="main-title" th:text="${category}"></h1>
 
         <div class="container">
 

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,20 +35,6 @@ public class StoreController {
         }
 
         return "pages/home";
-    }
-
-
-    @GetMapping("admin/dashboard")
-    public String adminDashboard(Model model) {
-        List<ToyEntity> toys = toyService.findAll();
-
-        if( toys.isEmpty() ) {
-            model.addAttribute("message", "Não há brinquedos cadastrados.");
-        } else {
-            model.addAttribute("toys", toys);
-        }
-
-        return "pages/admin/dashboard";
     }
 
 
