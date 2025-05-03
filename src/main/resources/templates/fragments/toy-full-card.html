@@ -3,7 +3,7 @@
     <div th:fragment="toyCard(toy)">
 
         <div class="card d-flex flex-row">
-            <img th:src="@{${toy.imageUrl}}" alt="Imagem do Brinquedo" class="card-image">
+            <img th:src="@{${toy.image}}" alt="Imagem do Brinquedo" class="card-image">
 
             <div class="card-details">
                 <h3 th:text="${toy.name}">Nome do Brinquedo</h3>
