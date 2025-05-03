@@ -58,6 +58,7 @@
     text-align: center;
     color: var(--primary);
     text-transform: uppercase;
+    margin-bottom: 40px;
 }
 
 /* BUTTONS */
@@ -65,10 +66,10 @@
 .btn {
     background: var(--white);
     color: var(--primary);
-    border: 1px solid var(--primary);
+    border: 2px solid var(--primary);
     border-radius: 20px;
     padding: 5px 10px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .btn:hover {

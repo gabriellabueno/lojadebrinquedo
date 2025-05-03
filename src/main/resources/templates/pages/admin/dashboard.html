@@ -20,7 +20,7 @@
         <!-- Alertas de Sucesso / Erro -->
         <div th:replace="~{fragments/alerts :: alerts}"></div>
 
-        <table class="table table-striped table-hover custom-table">
+        <table class="table bg-primary table-hover custom-table table-bordered table-responsive-sm">
             <thead>
             <tr class="table-header">
                 <th>Nome</th>
@@ -32,9 +32,9 @@
 
             <tbody>
             <tr th:each="toy : ${toys}" class="table-row">
-                <td th:text="${toy.name}"></td>
-                <td th:text="${toy.category.name}"></td>
-                <td th:text="${toy.price}"></td>
+                <td th:text="${toy.name}" class="align-middle"></td>
+                <td th:text="${toy.category.name}" class="align-middle"></td>
+                <td th:text="${toy.price}" class="align-middle text-center"></td>
                 <td>
                     <div class="controls d-flex justify-content-evenly">
 
@@ -89,13 +89,16 @@
 
         </table>
 
-        <a th:href="@{/admin/new-toy}">
-            <button class="btn">Novo Brinquedo</button>
-        </a>
+        <div class="d-flex gap-4 my-5">
+            <a th:href="@{/admin/new-toy}">
+                <button class="btn">Novo Brinquedo</button>
+            </a>
 
-        <a th:href="@{/admin/home}">
-            <button class="btn">Voltar</button>
-        </a>
+            <a th:href="@{/admin/home}">
+                <button class="btn">Voltar</button>
+            </a>
+        </div>
+
 
     </section>
 
