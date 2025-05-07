@@ -5,12 +5,17 @@ import br.edu.fatecgru.toybox.service.CategoryService;
 import br.edu.fatecgru.toybox.service.ToyService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.URLConnection;
 import java.util.Base64;
 
 
@@ -66,7 +71,7 @@ public class ToyController {
                          @RequestParam("imageFile") MultipartFile imageFile,
                          RedirectAttributes redirectAttributes) {
         try {
-            toyService.create(toy);
+            toyService.create(toy, imageFile);
             redirectAttributes.addFlashAttribute("successMessage",
                     "Brinquedo cadastrado com sucesso!");
         } catch (Exception ex) {
@@ -97,13 +102,14 @@ public class ToyController {
     @PutMapping("admin/update-toy/{id}")
     public String update(@ModelAttribute("toy") ToyEntity toy,
                          @PathVariable("id") Long id,
+                         @RequestParam("imageFile") MultipartFile imageFile,
                          RedirectAttributes redirectAttributes,
                          Model model) {
         try {
-            toyService.update(id, toy);
+            toyService.update(id, toy, imageFile);
             redirectAttributes.addFlashAttribute("successMessage",
                     "Brinquedo atualizado com sucesso!");
-        } catch (EntityNotFoundException ex) {
+        } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
         }
 
@@ -127,5 +133,14 @@ public class ToyController {
         }
 
         return "redirect:/admin/dashboard";
+    }
+
+    @GetMapping(value = "/toy/image/{id}")
+    public ResponseEntity<byte[]> getToyImage(@PathVariable("id") Long id) {
+        try {
+            return toyService.getImageResponse(id);
+        } catch (Exception ex) {
+            return ResponseEntity.notFound().build(); // Retorna 404
+        }
     }
 }

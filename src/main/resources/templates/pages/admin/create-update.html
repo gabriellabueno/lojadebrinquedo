@@ -21,7 +21,7 @@
         <div th:replace="~{fragments/alerts :: alerts}"></div>
 
 
-        <form th:action="@{${action}}" th:object="${toy}" method="post">
+        <form th:action="@{${action}}" th:object="${toy}" method="post" enctype="multipart/form-data">
 
             <!-- HiddenHttpMethodFilter - Fltro p/ Spring MVC substituir metodo "post" por "put" -->
             <input type="hidden" name="_method" th:value="${method}">

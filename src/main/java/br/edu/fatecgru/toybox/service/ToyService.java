@@ -7,8 +7,15 @@ import br.edu.fatecgru.toybox.repository.ToyRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.URLConnection;
 import java.util.List;
 
 
@@ -41,7 +48,7 @@ public class ToyService {
     }
 
    @Transactional
-    public ToyEntity create(ToyEntity toy) {
+    public ToyEntity create(ToyEntity toy, MultipartFile imageFile) throws IOException {
 
         if ( toyRepository.existsById( toy.getId()) ) {
            throw new EntityExistsException(
@@ -53,12 +60,17 @@ public class ToyService {
                     "Categoria não encontrada com ID: " + toy.getCategoryId() );
         }
 
+        if( imageFile.isEmpty() ) {
+            throw new IOException(
+                    "É necessário selecionar um arquivo de imagem!" );
+        }
 
-       return toyRepository.save(toy);
+        toy.setImage(imageFile.getBytes());
+        return toyRepository.save(toy);
    }
 
     @Transactional
-    public ToyEntity update(Long id,  ToyEntity obj) {
+    public ToyEntity update(Long id,  ToyEntity obj, MultipartFile imageFile) throws IOException {
 
         if ( !toyRepository.existsById( id ) ) {
            throw new EntityNotFoundException(
@@ -69,6 +81,13 @@ public class ToyService {
             throw new EntityNotFoundException(
                     "Categoria não encontrada com ID: " + obj.getCategoryId());
         }
+
+        // Se o usuário não inserir uma imagem mantém o brinquedo com a imagem armazenada no BD
+        ToyEntity existingToy = toyRepository.findById(id);
+        if (imageFile == null || imageFile.isEmpty())
+            obj.setImage(existingToy.getImage());
+        else
+            obj.setImage(imageFile.getBytes());
 
         obj.setId(id);
         return toyRepository.save(obj);
@@ -83,6 +102,31 @@ public class ToyService {
         }
 
         toyRepository.deleteById(id);
+    }
+
+    public ResponseEntity<byte[]> getImageResponse(Long id) throws IOException {
+        if ( !toyRepository.existsById( id ) ) {
+            throw new EntityNotFoundException(
+                    "Brinquedo não encontrado com ID: " + id );
+        }
+
+        ToyEntity toy = toyRepository.findById(id);
+
+        if( toy.getImage() == null ) {
+            throw new IOException(
+                    "Imagem não encontrada com ID: " + id );
+        }
+
+        String mimeType = URLConnection.guessContentTypeFromStream(new ByteArrayInputStream(toy.getImage()));
+        MediaType mediaType = MediaType.IMAGE_JPEG; // Mantém JPEG como padrão
+
+        // Muda o tipo de mídia para PNG se necessário
+        if ("image/png".equals(mimeType))
+            mediaType = MediaType.IMAGE_PNG;
+
+        return ResponseEntity.ok()
+                .contentType(mediaType)
+                .body(toy.getImage());
     }
 
 }

@@ -22,7 +22,7 @@ public class ToyEntity {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Column(name = "image", nullable = false)
+    @Column(name = "image", nullable = false, columnDefinition = "LONGBLOB")
     @Lob
     private byte[] image;
 
