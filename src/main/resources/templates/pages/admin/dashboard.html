@@ -20,6 +20,16 @@
         <!-- Alertas de Sucesso / Erro -->
         <div th:replace="~{fragments/alerts :: alerts}"></div>
 
+        <div class="d-flex gap-4 my-4">
+            <a th:href="@{/admin/new-toy}">
+                <button class="btn">Novo Brinquedo</button>
+            </a>
+
+            <a th:href="@{/admin/home}">
+                <button class="btn">Voltar</button>
+            </a>
+        </div>
+
         <table class="table bg-primary table-hover custom-table table-bordered table-responsive-sm">
             <thead>
             <tr class="table-header">
@@ -88,17 +98,6 @@
             </tbody>
 
         </table>
-
-        <div class="d-flex gap-4 my-5">
-            <a th:href="@{/admin/new-toy}">
-                <button class="btn">Novo Brinquedo</button>
-            </a>
-
-            <a th:href="@{/admin/home}">
-                <button class="btn">Voltar</button>
-            </a>
-        </div>
-
 
     </section>
 

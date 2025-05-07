@@ -45,8 +45,7 @@ public class SecurityConfig {
 
                         .requestMatchers(
                                 "/admin/**",
-                                "/auth/logout",
-                                "/upload-toys/**"
+                                "/auth/logout"
                         ).hasRole("ADMIN")
 
                         .anyRequest().authenticated()
