@@ -9,8 +9,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
+
 
 @Service
 public class ToyService {
@@ -53,8 +53,8 @@ public class ToyService {
                     "Categoria não encontrada com ID: " + toy.getCategoryId() );
         }
 
-        return toyRepository.save(toy);
 
+       return toyRepository.save(toy);
    }
 
     @Transactional
@@ -70,8 +70,8 @@ public class ToyService {
                     "Categoria não encontrada com ID: " + obj.getCategoryId());
         }
 
-            obj.setId(id);
-            return toyRepository.save(obj);
+        obj.setId(id);
+        return toyRepository.save(obj);
 
     }
 

@@ -8,7 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
+import java.util.Base64;
+
 
 @Controller
 public class ToyController {
@@ -26,7 +31,10 @@ public class ToyController {
         ToyEntity toy = toyService.findById(id);
 
         if (toy != null) {
+            // Converte o byte[] para Base64
+            String base64Image = Base64.getEncoder().encodeToString(toy.getImage());
             model.addAttribute("toy", toy);
+            model.addAttribute("imageBase64", base64Image);
         } else {
             model.addAttribute("message", "Brinquedo de ID " + id + " não encontrado.");
         }
@@ -56,8 +64,8 @@ public class ToyController {
 
     @PostMapping("admin/new-toy")
     public String create(@ModelAttribute("toy") ToyEntity toy,
+                         @RequestParam("imageFile") MultipartFile imageFile,
                          RedirectAttributes redirectAttributes) {
-
         try {
             toyService.create(toy);
             redirectAttributes.addFlashAttribute("successMessage",

@@ -17,8 +17,7 @@ public class CategoryEntity {
     private String name;
 
     @Column(name = "image", nullable = false)
-    @Lob
-    private byte[] image;
+    private String image;
 
     public CategoryEntity() {}
 
@@ -39,11 +38,11 @@ public class CategoryEntity {
         this.name = name;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
