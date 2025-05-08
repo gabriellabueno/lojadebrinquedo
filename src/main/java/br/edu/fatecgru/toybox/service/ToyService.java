@@ -101,6 +101,10 @@ public class ToyService {
                     "Brinquedo não encontrado com ID: " + id);
         }
 
+        ToyEntity toy = toyRepository.findById(id);
+
+        byte[] toyImage = toy.getImage();
+
         toyRepository.deleteById(id);
     }
 
