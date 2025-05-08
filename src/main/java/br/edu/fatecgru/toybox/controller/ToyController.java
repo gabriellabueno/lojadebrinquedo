@@ -54,6 +54,7 @@ public class ToyController {
         model.addAttribute("method", "post");
         model.addAttribute("action", "/admin/new-toy");
         model.addAttribute("readOnly", false);
+        model.addAttribute("hint", false);
         model.addAttribute("categories", categoryService.findAll());
 
         // Se o atributo "toy" estiver presente nos Flash Attributes (após erro),
@@ -91,6 +92,7 @@ public class ToyController {
         model.addAttribute("title", "Atualizar");
         model.addAttribute("method", "put");
         model.addAttribute("action", "/admin/update-toy/" + id);
+        model.addAttribute("hint", true);
         model.addAttribute("readOnly", true);
 
         model.addAttribute("toy", toyService.findById(id));

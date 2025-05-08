@@ -44,6 +44,9 @@
                 <label for="formFile" class="form-label">Imagem</label>
                 <input name="imageFile" class="form-control" type="file"
                        id="formFile" accept="image/jpeg, image/png">
+                <div class="form-text" th:if="${hint}">
+                    Se nenhuma imagem for selecionada, a anterior será mantida.
+                </div>
             </div>
         </div>
     </div>

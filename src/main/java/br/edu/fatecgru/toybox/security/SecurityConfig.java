@@ -64,11 +64,11 @@ public class SecurityConfig {
     CommandLineRunner initAdmin(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
 
-            if(!userRepository.existsByEmail("admin@admin.com")) {
+            if(!userRepository.existsByEmail("admin@toybox.com")) {
                 UserEntity admin = new UserEntity();
                 admin.setName("admin");
-                admin.setEmail("admin@admin.com");
-                admin.setPassword(passwordEncoder.encode("admin@fatec"));
+                admin.setEmail("admin@toybox.com");
+                admin.setPassword(passwordEncoder.encode("167@fatec"));
                 admin.setUserRole(UserRole.ADMIN);
                 userRepository.save(admin);
             }
