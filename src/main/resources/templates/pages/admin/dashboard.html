@@ -53,12 +53,12 @@
                         </a>
 
                         <!-- Botão Excluir -->
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <button type="button" class="btn" data-bs-toggle="modal" th:attr="data-bs-target='#deleteModal__' + ${toy.id}">
                             Excluir
                         </button>
 
                         <!-- Pop-up confirmação Excluir -->
-                        <div id="deleteModal" class="modal fade" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div th:attr="id='deleteModal__' + ${toy.id}" class="modal fade" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header bg-danger text-white">
