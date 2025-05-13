@@ -60,21 +60,6 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    @Bean
-    CommandLineRunner initAdmin(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        return args -> {
-
-            if(!userRepository.existsByEmail("admin@toybox.com")) {
-                UserEntity admin = new UserEntity();
-                admin.setName("admin");
-                admin.setEmail("admin@toybox.com");
-                admin.setPassword(passwordEncoder.encode("167@fatec"));
-                admin.setUserRole(UserRole.ADMIN);
-                userRepository.save(admin);
-            }
-
-        };
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
