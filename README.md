@@ -9,7 +9,7 @@
 </div>
 
 <a href="https://github.com/gabriellabueno/toybox">
- <img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/logo.png" width="250px" alt="Logo do website" align="right"> 
+ <img src="https://github.com/gabriellabueno/toybox/blob/main/midias/logo.png" width="250px" alt="Logo do website" align="right"> 
 </a>
 
 Este projeto consiste em um website estruturado para exposição de um catálogo de loja. A temática escolhida como modelo foi o catálogo de uma loja de brinquedos, aqui chamada de ToyBox. 
@@ -32,26 +32,26 @@ A aplicação capta informações sobre os produtos em uma base de dados, atrav�
 
 ### Home e Visualização dos Produtos
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/home.png" width="300px" alt="Tela Inicial">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/home.png" width="300px" alt="Tela Inicial">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/detalhes-brinquedo.png" width="300px" alt="Visualização dos Produtos">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/detalhes-brinquedo.png" width="300px" alt="Visualização dos Produtos">  
 
 ### Categorias
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/categorias.png" width="300px" alt="Todas categorias">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/categorias.png" width="300px" alt="Todas categorias">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/categoria-exemplo.png" width="300px" alt="Categoria exemplo">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/categoria-exemplo.png" width="300px" alt="Categoria exemplo">  
 
 ### Administração
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/tela-adm.png" width="300px" alt="Home Adm">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/tela-adm.png" width="300px" alt="Home Adm">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/dashborad-adm.png" width="300px" alt="Dashboard adm">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/dashborad-adm.png" width="300px" alt="Dashboard adm">  
 
 ### Cadastro e Manutenção de Produtos
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/cadastrar-brinquedo.png" width="300px" alt="Cadastro de Brinquedos">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/cadastrar-brinquedo.png" width="300px" alt="Cadastro de Brinquedos">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/manutencao-brinquedo.png" width="300px" alt="Manutenção de Brinquedos">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/manutencao-brinquedo.png" width="300px" alt="Manutenção de Brinquedos">  
 
 </div>
