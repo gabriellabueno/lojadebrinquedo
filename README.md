@@ -4,7 +4,7 @@
   
 # :gift: :teddy_bear: :yo_yo: Toy Box </h1> 
 
- [![Vídeo demonstração](https://img.shields.io/badge/Demonstração%20o%20ToyBox-470137?style=for-the-badge)](https://youtu.be/mYsNCoCOc7w)
+ [![Vídeo demonstração](https://img.shields.io/badge/Demonstração%20do%20ToyBox-470137?style=for-the-badge)](https://youtu.be/mYsNCoCOc7w)
 
 </div>
 
@@ -32,26 +32,26 @@ A aplicação capta informações sobre os produtos em uma base de dados, atrav�
 
 ### Home e Visualização dos Produtos
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/home.png" width="300px" alt="Tela Inicial">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/home.png" alt="Tela Inicial">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/detalhes-brinquedo.png" width="300px" alt="Visualização dos Produtos">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/detalhes-brinquedo.png"  alt="Visualização dos Produtos">  
 
 ### Categorias
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/categorias.png" width="300px" alt="Todas categorias">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/categorias.png"  alt="Todas categorias">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/categoria-exemplo.png" width="300px" alt="Categoria exemplo">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/categoria-exemplo.png"  alt="Categoria exemplo">  
 
 ### Administração
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/tela-adm.png" width="300px" alt="Home Adm">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/tela-adm.png"  alt="Home Adm">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/dashborad-adm.png" width="300px" alt="Dashboard adm">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/dashborad-adm.png"  alt="Dashboard adm">  
 
 ### Cadastro e Manutenção de Produtos
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/cadastrar-brinquedo.png" width="300px" alt="Cadastro de Brinquedos">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/cadastrar-brinquedo.png"  alt="Cadastro de Brinquedos">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/manutencao-brinquedo.png" width="300px" alt="Manutenção de Brinquedos">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/midias/manutencao-brinquedo.png"  alt="Manutenção de Brinquedos">  
 
 </div>
