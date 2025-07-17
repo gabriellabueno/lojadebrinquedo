@@ -4,7 +4,7 @@
   
 # :gift: :teddy_bear: :yo_yo: Toy Box </h1> 
 
- [![Website](https://img.shields.io/badge/Acesse%20o%20ToyBox-470137?style=for-the-badge)](LINK)
+ [![Vídeo demonstração](https://img.shields.io/badge/Demonstração%20o%20ToyBox-470137?style=for-the-badge)](https://youtu.be/mYsNCoCOc7w)
 
 </div>
 
@@ -30,29 +30,28 @@ A aplicação capta informações sobre os produtos em uma base de dados, atrav�
 
 <div align="center">
 
-### Home
+### Home e Visualização dos Produtos
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/home.jpeg" width="300px" alt="Tela Inicial">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/home.png" width="300px" alt="Tela Inicial">  
 
-### Visualização dos Produtos
+<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/detalhes-brinquedo.png" width="300px" alt="Visualização dos Produtos">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/atualizar-cadastro.jpg" width="300px" alt="Visualização dos Produtos">  
+### Categorias
+
+<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/categorias.png" width="300px" alt="Todas categorias">  
+
+<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/categoria-exemplo.png" width="300px" alt="Categoria exemplo">  
+
+### Administração
+
+<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/tela-adm.png" width="300px" alt="Home Adm">  
+
+<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/dashborad-adm.png" width="300px" alt="Dashboard adm">  
 
 ### Cadastro e Manutenção de Produtos
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/cadastro-produto.jpg" width="300px" alt="Cadastro de Brinquedos">  
+<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/cadastrar-brinquedo.png" width="300px" alt="Cadastro de Brinquedos">  
 
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/manutencao-produto.jpg" width="300px" alt="Manutenção de Brinquedos">  
-
-### Cadastro e Manutenção de Usuários
-
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/cadastro-usuario.jpg" width="300px" alt="Cadastro de Usuários">  
-
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/manutencao-usuario.jpg" width="300px" alt="Manutenção de Usuários">  
-
-### Login de Usuário
-
-<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/login-usuario.jpg" width="300px" alt="Login de Usuário">  
-
+<img src="https://github.com/gabriellabueno/toybox/blob/main/imagens/manutencao-brinquedo.png" width="300px" alt="Manutenção de Brinquedos">  
 
 </div>
